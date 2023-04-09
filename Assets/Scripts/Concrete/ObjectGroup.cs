@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
+[System.Serializable]
 public class ObjectGroup
 {
     public Shape ObjectShape { get; set; }
@@ -16,7 +18,28 @@ public class ObjectGroup
         Rotation = _rotation;
         GroupLayout = _groupLayout;
     }
+
+    public string ToJson()
+    {
+        JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            ContractResolver = new MyJsonContractResolver()
+        };
+
+        return JsonConvert.SerializeObject(this, settings);
+    }
+
+    public static ObjectGroup FromJson(string jsonString)
+    {
+        var settings = new JsonSerializerSettings
+        {
+            ContractResolver = new MyJsonContractResolver()
+        };
+
+        return JsonConvert.DeserializeObject<ObjectGroup>(jsonString, settings);
+    }
 }
+
 
 public enum Shape
 {
@@ -27,6 +50,6 @@ public enum Shape
 public enum GroupLayout
 {
     Square,
-    Triange,
+    Triangle,
     X
 }
