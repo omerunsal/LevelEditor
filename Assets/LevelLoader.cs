@@ -24,6 +24,5 @@ public class LevelLoader : Singleton<LevelLoader>
         List<Level> levelList = Level.ListFromJson(json);
         
         
-        Debug.Log("asd");
     }
 }

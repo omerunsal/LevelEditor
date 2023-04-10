@@ -50,9 +50,37 @@
           "z": 0.0
         },
         "GroupLayout": 2
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 43.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 6.597456E-06,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 1.0,
+          "y": 0.0,
+          "z": 19.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 90.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
       }
     ],
-    "FirstCheckpointCount": 10,
+    "FirstCheckpointCount": 15,
     "SecondCheckpointCount": 15
   },
   {
