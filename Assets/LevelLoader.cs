@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using Player;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;

@@ -26,13 +26,13 @@
       {
         "ObjectShape": 0,
         "Position": {
-          "x": -3.0,
+          "x": -1.0,
           "y": 0.0,
-          "z": 7.0
+          "z": 9.0
         },
         "Rotation": {
           "x": 0.0,
-          "y": 60.0000038,
+          "y": 0.0,
           "z": 0.0
         },
         "GroupLayout": 0
@@ -42,32 +42,18 @@
         "Position": {
           "x": 0.0,
           "y": 0.0,
-          "z": 0.0
-        },
-        "Rotation": {
-          "x": 0.0,
-          "y": 270.0,
-          "z": 0.0
-        },
-        "GroupLayout": 1
-      },
-      {
-        "ObjectShape": 0,
-        "Position": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 12.0
+          "z": 15.0
         },
         "Rotation": {
           "x": 0.0,
           "y": 0.0,
           "z": 0.0
         },
-        "GroupLayout": 1
+        "GroupLayout": 2
       }
     ],
-    "FirstCheckpointCount": 5,
-    "SecondCheckpointCount": 450
+    "FirstCheckpointCount": 10,
+    "SecondCheckpointCount": 15
   },
   {
     "LevelNumber": 2,

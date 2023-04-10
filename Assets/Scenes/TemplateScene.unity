@@ -949,6 +949,46 @@ MonoBehaviour:
   - {fileID: 6329262740041804080, guid: 37d8737ab476fec4cb64e24d6eb3e381, type: 3}
   - {fileID: 5896462677075084849, guid: 2cd9732aa8483d646aac5dc5bb7ed909, type: 3}
   - {fileID: 6988999142483192095, guid: a9a610bd582263741b8f7b95be1da312, type: 3}
+--- !u!1 &1787243363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6179975467238244988, guid: 7a233ccfb3cc111479921d90dc41b7d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6179975466774746381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1787243364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787243363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f408129843eb8428f30bcab6eb50ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xLimits: {x: 0, y: 0}
+  zLimits: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0}
+  playerSettings: {fileID: 11400000, guid: bb6af3380a7cac6498a2d4fcb80ba3bd, type: 2}
+  isTouched: 0
+  GamePaused: 0
+--- !u!54 &1787243365
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787243363}
+  serializedVersion: 2
+  m_Mass: 25
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 116
+  m_CollisionDetection: 2
 --- !u!4 &1840614922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6508030413751687796, guid: 14d0958b9984ffb44934ffe3d6518156,
