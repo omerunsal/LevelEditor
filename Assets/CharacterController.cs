@@ -26,6 +26,7 @@ public class CharacterController : MonoBehaviour
     protected virtual void Movement()
     {
         rigidbody.velocity = direction * playerSettings.moveSpeed;
+        // rigidbody.velocity = Vector3.forward * playerSettings.moveSpeed;
         LimitPosition(transform.position); 
     }
 

@@ -34,12 +34,13 @@ public class PlayerController : CharacterController
 
     private void FixedUpdate()
     {
+       
         base.Movement();
         
     }
     
 
-    private void InputType() //TODO : Get axis refactor
+    private void InputType()
     {
 #if UNITY_EDITOR
 

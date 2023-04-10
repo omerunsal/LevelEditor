@@ -407,7 +407,7 @@ public class LevelSaveEditor : Editor
     {
 
        
-        if (_selectedSceneIndex !=null)
+        if (_selectedSceneIndex !=0)
         {
             string json = File.ReadAllText(Application.dataPath + "/level_data.json");
             List<Level> levels = Level.ListFromJson(json);
