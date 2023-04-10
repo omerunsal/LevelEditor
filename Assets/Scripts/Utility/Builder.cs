@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Builder<T> : MonoBehaviour where T : CollectableGroup
 {
-    public T BuildProductionWith(T buildUnit, Vector3 buildPosition)
+    public T BuildProductionWith(T buildUnit, Vector3 buildPosition, Vector3 rotation)
     {
-        return Instantiate(buildUnit, buildPosition, Quaternion.identity);
+        return Instantiate(buildUnit, buildPosition, Quaternion.Euler(rotation));
     }
     
     public GameObject BuildProduction(T buildUnit)

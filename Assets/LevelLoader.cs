@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour
+public class LevelLoader : Singleton<LevelLoader>
 {
     public List<GameObject> ObjectGroups = new List<GameObject>();
 

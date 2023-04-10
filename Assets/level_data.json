@@ -1,99 +1,162 @@
-[{
-  "LevelNumber": 2,
-  "ObjectGroups": [
-    {
-      "ObjectShape": 0,
-      "Position": {
-        "x": -3.0,
-        "y": 0.0,
-        "z": 7.0
+[
+  {
+    "LevelNumber": 0,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      }
+    ]
+  },
+  {
+    "LevelNumber": 1,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 7.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 60.0000038,
+          "z": 0.0
+        },
+        "GroupLayout": 0
       },
-      "Rotation": {
-        "x": 0.0,
-        "y": 60.0000038,
-        "z": 0.0
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      }
+    ]
+  },
+  {
+    "LevelNumber": 2,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 7.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 60.0000038,
+          "z": 0.0
+        },
+        "GroupLayout": 0
       },
-      "GroupLayout": 0
-    },
-    {
-      "ObjectShape": 0,
-      "Position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 1.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
       },
-      "Rotation": {
-        "x": 0.0,
-        "y": 270.0,
-        "z": 0.0
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
       },
-      "GroupLayout": 1
-    }
-  ]
-}
-,
-{
-  "LevelNumber": 3,
-  "ObjectGroups": [
-    {
-      "ObjectShape": 0,
-      "Position": {
-        "x": -3.0,
-        "y": 0.0,
-        "z": 7.0
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 60.0000038,
+          "z": 0.0
+        },
+        "GroupLayout": 1
       },
-      "Rotation": {
-        "x": 0.0,
-        "y": 60.0000038,
-        "z": 0.0
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -5.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 60.0000038,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      }
+    ]
+  },
+  {
+    "LevelNumber": 3,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
       },
-      "GroupLayout": 0
-    },
-    {
-      "ObjectShape": 0,
-      "Position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "Rotation": {
-        "x": 0.0,
-        "y": 270.0,
-        "z": 0.0
-      },
-      "GroupLayout": 1
-    }
-  ]
-},{
-  "LevelNumber": 4,
-  "ObjectGroups": [
-    {
-      "ObjectShape": 0,
-      "Position": {
-        "x": -3.0,
-        "y": 0.0,
-        "z": 7.0
-      },
-      "Rotation": {
-        "x": 0.0,
-        "y": 60.0000038,
-        "z": 0.0
-      },
-      "GroupLayout": 0
-    },
-    {
-      "ObjectShape": 0,
-      "Position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "Rotation": {
-        "x": 0.0,
-        "y": 270.0,
-        "z": 0.0
-      },
-      "GroupLayout": 1
-    }
-  ]
-}]
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      }
+    ]
+  }
+]

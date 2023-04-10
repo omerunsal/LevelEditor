@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 508040453}
   m_Layer: 0
   m_Name: LevelEnvironments
-  m_TagString: Untagged
+  m_TagString: LevelEnvironments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

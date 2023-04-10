@@ -19,6 +19,7 @@ public class LevelSaveEditor : Editor
     private int _selectedSceneIndex;
     private int selectedChildIndex = 0;
 
+    private bool isSelectedLevelLoaded=false; //TODO: yüklenme kontrolü
 
     private void OnEnable()
     {
@@ -69,40 +70,85 @@ public class LevelSaveEditor : Editor
         // GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
-        _selectedSceneIndex = EditorGUILayout.Popup("Scenes", _selectedSceneIndex, GetLevelNumbers());
+        _selectedSceneIndex = EditorGUILayout.Popup("Scenes (Level 0 means Editor Scene)", _selectedSceneIndex, GetLevelNumbers());
         GUILayout.EndHorizontal();
 
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Save As New Level"))
+        GUILayout.BeginHorizontal(); //sahne butonları buradaydı
+        if (GUILayout.Button("Save As New Level Data in JSON"))
         {
-            string[] existingSceneNames = Directory.GetFiles("Assets/Scenes", "*.unity");
-            List<string> existingScenes = new List<string>();
+            Platform platform = (Platform)target;
+            int levelNumber = 1;
+            string jsonString = "";
 
-            foreach (string sceneName in existingSceneNames)
+            // Json dosyasındaki son veriyi okuyoruz
+            if (File.Exists(Application.dataPath + "/level_data.json"))
             {
-                existingScenes.Add(Path.GetFileNameWithoutExtension(sceneName));
+                jsonString = File.ReadAllText(Application.dataPath + "/level_data.json");
+                // var levels = JsonConvert.DeserializeObject<List<Level>>(jsonString);
+                List<Level> levels = Level.ListFromJson(jsonString);
+                if (levels != null && levels.Count > 0)
+                {
+                    levelNumber = levels[levels.Count - 1].LevelNumber + 1; // Son level number'ı alıp bir ekleyerek yeni level number'ı belirliyoruz
+                }
+                
+                jsonString = jsonString.TrimEnd(']');
             }
 
-            int newSceneNumber = 1;
-            string newSceneName = "Level";
-
-            while (existingScenes.Contains(newSceneName + newSceneNumber))
+            if (platform.transform.childCount > 0)
             {
-                newSceneNumber++;
+                Transform[] childTransforms = new Transform[platform.transform.childCount];
+
+                List<ObjectGroup> ObjectGroupGroupListForThisLevel = new List<ObjectGroup>();
+
+
+                for (int i = 0; i < platform.transform.childCount; i++)
+                {
+                    var objectGroup = platform.transform.GetChild(i);
+
+                    ObjectGroup collectableGroup =
+                        new ObjectGroup(objectGroup.gameObject.GetComponent<CollectableGroup>().Shape,
+                            objectGroup.position,
+                            objectGroup.rotation.eulerAngles,
+                            objectGroup.gameObject.GetComponent<CollectableGroup>().GroupLayout);
+                    ObjectGroupGroupListForThisLevel.Add(collectableGroup);
+
+                    childTransforms[i] = platform.transform.GetChild(i);
+                }
+
+                ObjectGroup[] objectGroupArray = ObjectGroupGroupListForThisLevel.ToArray();
+                Level level = new Level(levelNumber, objectGroupArray);
+
+                var settings = new JsonSerializerSettings
+                {
+                    ContractResolver = new MyJsonContractResolver()
+                };
+
+                string newJsonString = JsonConvert.SerializeObject(level, Formatting.Indented, settings);
+                jsonString += (jsonString.EndsWith("\n") ? "" : ",") + newJsonString + "]";
+
+                Debug.Log(jsonString);
+
+                File.WriteAllText(Application.dataPath + "/level_data.json", jsonString);
             }
-
-            newSceneName += newSceneNumber;
-
-            EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), "Assets/Scenes/" + newSceneName + ".unity");
         }
 
-        if (GUILayout.Button("Load Scene"))
+        if (GUILayout.Button("Load Selected Scene"))
         {
-            string sceneName = _sceneNames[_selectedSceneIndex];
+            Platform platform = (Platform)target;
 
-            EditorSceneManager.OpenScene("Assets/Scenes/" + sceneName + ".unity");
+            if (platform.transform.childCount > 0)
+            {
+                List<GameObject> childObjects = new List<GameObject>();
+                foreach (Transform child in platform.transform)
+                {
+                    childObjects.Add(child.gameObject);
+                }
 
-            Selection.objects = GameObject.FindObjectsOfType<GameObject>();
+                childObjects.ForEach(child => DestroyImmediate(child));
+                childObjects.Clear();
+            }
+            
+            LoadSelectedLevel();
         }
 
         if (GUILayout.Button("Reset Editor Scene"))
@@ -126,27 +172,42 @@ public class LevelSaveEditor : Editor
 
         GUILayout.EndHorizontal();
 
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Update the selected scene"))
+        GUILayout.BeginHorizontal(); //update the selected buradaydı
+        if (GUILayout.Button("Update Selected Level Data in JSON", GetButtonStyle(Color.red, Color.white)))
         {
-            string sceneName = SceneManager.GetActiveScene().name;
-
-            if (sceneName != "EditorScene")
+            Platform platform = (Platform)target;
+            
+            if (_selectedSceneIndex != null && platform.transform.childCount > 0)
             {
-                string scenePath = "Assets/Scenes/" + sceneName + ".unity";
-                bool sceneExists = File.Exists(scenePath);
+                string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+                List<Level> levels = Level.ListFromJson(json);
 
-                if (sceneExists)
+                Level selectedLevel = levels[_selectedSceneIndex];
+        
+                // update the specific fields you want to change
+                selectedLevel.ObjectGroups = new ObjectGroup[platform.transform.childCount];
+                for (int i = 0; i < platform.transform.childCount; i++)
                 {
-                    EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), scenePath);
+                    var objectGroup = platform.transform.GetChild(i);
+                    selectedLevel.ObjectGroups[i] =
+                        new ObjectGroup(objectGroup.gameObject.GetComponent<CollectableGroup>().Shape,
+                            objectGroup.position,
+                            objectGroup.rotation.eulerAngles,
+                            objectGroup.gameObject.GetComponent<CollectableGroup>().GroupLayout);
                 }
-                else
+
+                // update the JSON for the specific level
+                levels[_selectedSceneIndex] = selectedLevel;
+
+                var settings = new JsonSerializerSettings
                 {
-                    EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), scenePath);
-                }
+                    ContractResolver = new MyJsonContractResolver()
+                };
+                string updatedJson = JsonConvert.SerializeObject(levels, Formatting.Indented, settings);
+
+                File.WriteAllText(Application.dataPath + "/level_data.json", updatedJson);
             }
         }
-
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal(EditorStyles.helpBox);
@@ -244,75 +305,33 @@ public class LevelSaveEditor : Editor
                 lastObjectTransform.localRotation *= Quaternion.Euler(0, 30, 0);
             }
         }
-
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
 
+    }
+
+    private void LoadSelectedLevel()
+    {
+        ObjectGroupBuilder objectGroupBuilder = FindObjectOfType<ObjectGroupBuilder>();
         
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Save As New Level Data in JSON", GetButtonStyle(Color.blue, Color.white)))
+        string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+        List<Level> levels = Level.ListFromJson(json);
+
+        Level selectedLevel = levels[_selectedSceneIndex];
+
+        for (int i = 0; i < _prefabs.Length; i++)
         {
-            Platform platform = (Platform)target;
-            int levelNumber = 1;
-            string jsonString = "";
-
-            // Json dosyasındaki son veriyi okuyoruz
-            if (File.Exists(Application.dataPath + "/level_data.json"))
+            foreach (var objectGroup in selectedLevel.ObjectGroups)
             {
-                jsonString = File.ReadAllText(Application.dataPath + "/level_data.json");
-                // var levels = JsonConvert.DeserializeObject<List<Level>>(jsonString);
-                List<Level> levels = Level.ListFromJson(jsonString);
-                if (levels != null && levels.Count > 0)
+                if (objectGroup.GroupLayout == _prefabs[i].GetComponent<CollectableGroup>().GroupLayout && objectGroup.ObjectShape == _prefabs[i].GetComponent<CollectableGroup>().Shape )
                 {
-                    levelNumber = levels[levels.Count - 1].LevelNumber + 1; // Son level number'ı alıp bir ekleyerek yeni level number'ı belirliyoruz
+                    GameObject instance = objectGroupBuilder.BuildProductionWith(_prefabs[i].GetComponent<CollectableGroup>(), objectGroup.Position,objectGroup.Rotation).gameObject;
+                    
+                    // instance.transform.parent = GameObject.FindWithTag("LevelEnvironments").transform;
+                    instance.transform.parent = ((Component)target).transform;
                 }
-                
-                jsonString = jsonString.TrimEnd(']');
-            }
-
-            if (platform.transform.childCount > 0)
-            {
-                Transform[] childTransforms = new Transform[platform.transform.childCount];
-
-                List<ObjectGroup> ObjectGroupGroupListForThisLevel = new List<ObjectGroup>();
-
-
-                for (int i = 0; i < platform.transform.childCount; i++)
-                {
-                    var objectGroup = platform.transform.GetChild(i);
-
-                    ObjectGroup collectableGroup =
-                        new ObjectGroup(objectGroup.gameObject.GetComponent<CollectableGroup>().Shape,
-                            objectGroup.position,
-                            objectGroup.rotation.eulerAngles,
-                            objectGroup.gameObject.GetComponent<CollectableGroup>().GroupLayout);
-                    ObjectGroupGroupListForThisLevel.Add(collectableGroup);
-
-                    childTransforms[i] = platform.transform.GetChild(i);
-                }
-
-                ObjectGroup[] objectGroupArray = ObjectGroupGroupListForThisLevel.ToArray();
-                Level level = new Level(levelNumber, objectGroupArray);
-
-                var settings = new JsonSerializerSettings
-                {
-                    ContractResolver = new MyJsonContractResolver()
-                };
-
-                string newJsonString = JsonConvert.SerializeObject(level, Formatting.Indented, settings);
-                jsonString += (jsonString.EndsWith("\n") ? "" : ",") + newJsonString + "]";
-
-                Debug.Log(jsonString);
-
-                File.WriteAllText(Application.dataPath + "/level_data.json", jsonString);
             }
         }
-        
-        if (GUILayout.Button("Update Selected Level Data in JSON", GetButtonStyle(Color.red, Color.white)))
-        {
-            UpdateLevelData();
-        }
-        GUILayout.EndHorizontal();
     }
 
 
@@ -369,6 +388,7 @@ public class LevelSaveEditor : Editor
     private void UpdateLevelData()
     {
 
+       
         if (_selectedSceneIndex !=null)
         {
             string json = File.ReadAllText(Application.dataPath + "/level_data.json");
@@ -386,6 +406,9 @@ public class LevelSaveEditor : Editor
 
             File.WriteAllText(Application.dataPath + "/level_data.json", updatedJson);
         }
+        
+        
+        
        
     }
 
