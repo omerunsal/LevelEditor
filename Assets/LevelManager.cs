@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+[DefaultExecutionOrder(-100)]
 public class LevelManager : Singleton<LevelManager>
 {
     private int _currentLevel = 1;
-
     private const string LEVEL_KEY = "current_level";
     public GameObject[] _prefabs;
+    public GameObject[] _checkpoints;
+    
     private void Awake()
     {
         _currentLevel = PlayerPrefs.GetInt(LEVEL_KEY, 1);
@@ -46,12 +48,18 @@ public class LevelManager : Singleton<LevelManager>
             {
                 if (objectGroup.GroupLayout == _prefabs[i].GetComponent<CollectableGroup>().GroupLayout && objectGroup.ObjectShape == _prefabs[i].GetComponent<CollectableGroup>().Shape )
                 {
-                    GameObject instance = objectGroupBuilder.BuildProductionWith(_prefabs[i].GetComponent<CollectableGroup>(), objectGroup.Position,objectGroup.Rotation).gameObject;
+                     GameObject instance = objectGroupBuilder.BuildProductionWith(_prefabs[i].GetComponent<CollectableGroup>(), objectGroup.Position,objectGroup.Rotation).gameObject;
+                    // GameObject instance = Instantiate(_prefabs[i], objectGroup.Position, Quaternion.Euler(objectGroup.Rotation)).gameObject;
                     
                     instance.transform.parent = GameObject.FindWithTag("LevelEnvironments").transform;
+                    
                 }
             }
         }
+
+        _checkpoints[0].GetComponent<Checkpoint>().CheckpointCount = level.FirstCheckpointCount;
+        _checkpoints[1].GetComponent<Checkpoint>().CheckpointCount = level.SecondCheckpointCount;
+        
        
         // Save the current level in PlayerPrefs
         SaveCurrentLevel();

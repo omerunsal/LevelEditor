@@ -9,13 +9,15 @@ public class Level
 {
     public int LevelNumber { get; set; }
     public ObjectGroup[] ObjectGroups { get; set; }
-    // public List<Sector> Sectors { get; set; }
+    public int FirstCheckpointCount { get; set; }
+    public int SecondCheckpointCount { get; set; }
 
-    public Level(int _levelNumber, ObjectGroup[] _objectGroups)
+    public Level(int _levelNumber, ObjectGroup[] _objectGroups,  int _firstCheckpointCount, int _secondCheckpointCount )
     {
         this.LevelNumber = _levelNumber;
         this.ObjectGroups = _objectGroups;
-        // Sectors = _sectors;
+        this.FirstCheckpointCount = _firstCheckpointCount;
+        this.SecondCheckpointCount = SecondCheckpointCount;
     }
     
     public string ToJson()

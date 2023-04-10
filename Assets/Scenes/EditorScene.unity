@@ -605,6 +605,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6508030413751687799, guid: 14d0958b9984ffb44934ffe3d6518156,
+        type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14d0958b9984ffb44934ffe3d6518156, type: 3}
 --- !u!4 &1073778952 stripped
@@ -678,6 +683,11 @@ PrefabInstance:
     - target: {fileID: 6508030413751687799, guid: 14d0958b9984ffb44934ffe3d6518156,
         type: 3}
       propertyPath: m_Name
+      value: Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6508030413751687799, guid: 14d0958b9984ffb44934ffe3d6518156,
+        type: 3}
+      propertyPath: m_TagString
       value: Checkpoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []

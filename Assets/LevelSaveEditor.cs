@@ -9,17 +9,21 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR    
 [CustomEditor(typeof(Platform))]
 public class LevelSaveEditor : Editor
 {
     private int _selectedPrefabIndex = 0;
     private GameObject[] _prefabs;
-    private string _levelName = "";
+    // private string _levelName = "";
     private string[] _sceneNames;
     private int _selectedSceneIndex;
-    private int selectedChildIndex = 0;
+    // private int selectedChildIndex = 0;
+    
+    private int firstCheckpointVal = 0;
+    private int secondCheckpointVal = 0;
 
-    private bool isSelectedLevelLoaded=false; //TODO: yüklenme kontrolü
+   
 
     private void OnEnable()
     {
@@ -70,6 +74,16 @@ public class LevelSaveEditor : Editor
         // GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
+        GUILayout.Label("1.Checkpoint Count:");
+        firstCheckpointVal = int.Parse(GUILayout.TextField(firstCheckpointVal.ToString()));
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("2.Checkpoint Count:");
+        secondCheckpointVal = int.Parse(GUILayout.TextField(secondCheckpointVal.ToString()));
+        GUILayout.EndHorizontal();
+        
+        GUILayout.BeginHorizontal();
         _selectedSceneIndex = EditorGUILayout.Popup("Scenes (Level 0 means Editor Scene)", _selectedSceneIndex, GetLevelNumbers());
         GUILayout.EndHorizontal();
 
@@ -116,7 +130,7 @@ public class LevelSaveEditor : Editor
                 }
 
                 ObjectGroup[] objectGroupArray = ObjectGroupGroupListForThisLevel.ToArray();
-                Level level = new Level(levelNumber, objectGroupArray);
+                Level level = new Level(levelNumber, objectGroupArray,firstCheckpointVal, secondCheckpointVal);
 
                 var settings = new JsonSerializerSettings
                 {
@@ -126,9 +140,9 @@ public class LevelSaveEditor : Editor
                 string newJsonString = JsonConvert.SerializeObject(level, Formatting.Indented, settings);
                 jsonString += (jsonString.EndsWith("\n") ? "" : ",") + newJsonString + "]";
 
-                Debug.Log(jsonString);
-
                 File.WriteAllText(Application.dataPath + "/level_data.json", jsonString);
+                
+                Debug.Log("Succesfully Added Json file");
             }
         }
 
@@ -183,7 +197,9 @@ public class LevelSaveEditor : Editor
                 List<Level> levels = Level.ListFromJson(json);
 
                 Level selectedLevel = levels[_selectedSceneIndex];
-        
+
+                selectedLevel.FirstCheckpointCount = firstCheckpointVal;
+                selectedLevel.SecondCheckpointCount = secondCheckpointVal;
                 // update the specific fields you want to change
                 selectedLevel.ObjectGroups = new ObjectGroup[platform.transform.childCount];
                 for (int i = 0; i < platform.transform.childCount; i++)
@@ -206,6 +222,8 @@ public class LevelSaveEditor : Editor
                 string updatedJson = JsonConvert.SerializeObject(levels, Formatting.Indented, settings);
 
                 File.WriteAllText(Application.dataPath + "/level_data.json", updatedJson);
+                
+                Debug.Log("Succesfully Update Json file");
             }
         }
         GUILayout.EndHorizontal();
@@ -318,7 +336,7 @@ public class LevelSaveEditor : Editor
         List<Level> levels = Level.ListFromJson(json);
 
         Level selectedLevel = levels[_selectedSceneIndex];
-
+        
         for (int i = 0; i < _prefabs.Length; i++)
         {
             foreach (var objectGroup in selectedLevel.ObjectGroups)
@@ -400,7 +418,7 @@ public class LevelSaveEditor : Editor
 
             // ObjectGroups güncellenir
 
-            Level updatedLevel = new Level(selectedLevel.LevelNumber, updatedObjectGroups.ToArray());
+            Level updatedLevel = new Level(selectedLevel.LevelNumber, updatedObjectGroups.ToArray(), firstCheckpointVal,secondCheckpointVal);
 
             string updatedJson = JsonConvert.SerializeObject(updatedLevel, Formatting.Indented);
 
@@ -428,3 +446,4 @@ public class LevelSaveEditor : Editor
         return null;
     }
 }
+#endif

@@ -203,6 +203,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1264993108}
     m_Modifications:
+    - target: {fileID: 950019853161442541, guid: 14d0958b9984ffb44934ffe3d6518156,
+        type: 3}
+      propertyPath: CountText
+      value: 
+      objectReference: {fileID: 687368133}
+    - target: {fileID: 950019853161442541, guid: 14d0958b9984ffb44934ffe3d6518156,
+        type: 3}
+      propertyPath: CheckpointCount
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3933929845676930236, guid: 14d0958b9984ffb44934ffe3d6518156,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -286,6 +296,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 276920468}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &551115733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3937547554196065745, guid: 14d0958b9984ffb44934ffe3d6518156,
+    type: 3}
+  m_PrefabInstance: {fileID: 6508030414348489854}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &625087588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6508030413751687799, guid: 14d0958b9984ffb44934ffe3d6518156,
+    type: 3}
+  m_PrefabInstance: {fileID: 6508030414348489854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &687368133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3937547554196065745, guid: 14d0958b9984ffb44934ffe3d6518156,
+    type: 3}
+  m_PrefabInstance: {fileID: 276920468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &850502046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +637,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 223285388103023145, guid: a8a42575e3b1a1b438f0fb15e3e92c91,
     type: 3}
   m_PrefabInstance: {fileID: 1022402981}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1067166742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6508030413751687799, guid: 14d0958b9984ffb44934ffe3d6518156,
+    type: 3}
+  m_PrefabInstance: {fileID: 276920468}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1178850051
 GameObject:
@@ -949,6 +995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2054670842}
   - component: {fileID: 2054670843}
+  - component: {fileID: 2054670844}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -990,6 +1037,21 @@ MonoBehaviour:
   - {fileID: 6329262740041804080, guid: 37d8737ab476fec4cb64e24d6eb3e381, type: 3}
   - {fileID: 5896462677075084849, guid: 2cd9732aa8483d646aac5dc5bb7ed909, type: 3}
   - {fileID: 6988999142483192095, guid: a9a610bd582263741b8f7b95be1da312, type: 3}
+  _checkpoints:
+  - {fileID: 625087588}
+  - {fileID: 1067166742}
+--- !u!114 &2054670844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054670841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f80087f2b8bd5499a004b6a59f5268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &223285387783385473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1140,6 +1202,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1264993108}
     m_Modifications:
+    - target: {fileID: 950019853161442541, guid: 14d0958b9984ffb44934ffe3d6518156,
+        type: 3}
+      propertyPath: CountText
+      value: 
+      objectReference: {fileID: 551115733}
+    - target: {fileID: 950019853161442541, guid: 14d0958b9984ffb44934ffe3d6518156,
+        type: 3}
+      propertyPath: CheckpointCount
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3933929845676930236, guid: 14d0958b9984ffb44934ffe3d6518156,
         type: 3}
       propertyPath: m_LocalPosition.z

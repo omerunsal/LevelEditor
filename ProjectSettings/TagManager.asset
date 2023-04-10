@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - LevelEnvironments
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
