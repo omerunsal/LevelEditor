@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -42,10 +44,9 @@ public class LevelSaveEditor : Editor
         GUILayout.Label("Object Controls", EditorStyles.boldLabel);
         GUILayout.EndHorizontal();
 
-        GUILayout.BeginHorizontal();
-
+        EditorGUILayout.BeginHorizontal();
         _selectedPrefabIndex = EditorGUILayout.Popup("Object Group", _selectedPrefabIndex, GetPrefabNames());
-        GUILayout.EndHorizontal();
+        EditorGUILayout.EndHorizontal();
 
         if (GUILayout.Button("Add Object Group", GetButtonStyle(Color.green, Color.black)))
         {
@@ -68,7 +69,7 @@ public class LevelSaveEditor : Editor
         // GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
-        _selectedSceneIndex = EditorGUILayout.Popup("Scenes", _selectedSceneIndex, _sceneNames);
+        _selectedSceneIndex = EditorGUILayout.Popup("Scenes", _selectedSceneIndex, GetLevelNumbers());
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
@@ -247,10 +248,27 @@ public class LevelSaveEditor : Editor
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
 
-        if (GUILayout.Button("Save Level Data to JSON", GetButtonStyle(Color.blue, Color.white)))
+        
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Save As New Level Data in JSON", GetButtonStyle(Color.blue, Color.white)))
         {
             Platform platform = (Platform)target;
+            int levelNumber = 1;
+            string jsonString = "";
 
+            // Json dosyasındaki son veriyi okuyoruz
+            if (File.Exists(Application.dataPath + "/level_data.json"))
+            {
+                jsonString = File.ReadAllText(Application.dataPath + "/level_data.json");
+                // var levels = JsonConvert.DeserializeObject<List<Level>>(jsonString);
+                List<Level> levels = Level.ListFromJson(jsonString);
+                if (levels != null && levels.Count > 0)
+                {
+                    levelNumber = levels[levels.Count - 1].LevelNumber + 1; // Son level number'ı alıp bir ekleyerek yeni level number'ı belirliyoruz
+                }
+                
+                jsonString = jsonString.TrimEnd(']');
+            }
 
             if (platform.transform.childCount > 0)
             {
@@ -273,19 +291,28 @@ public class LevelSaveEditor : Editor
                     childTransforms[i] = platform.transform.GetChild(i);
                 }
 
-                Level level = new Level(1, ObjectGroupGroupListForThisLevel); //TODO: level sayısı kontrol edilmeli
+                ObjectGroup[] objectGroupArray = ObjectGroupGroupListForThisLevel.ToArray();
+                Level level = new Level(levelNumber, objectGroupArray);
 
                 var settings = new JsonSerializerSettings
                 {
                     ContractResolver = new MyJsonContractResolver()
                 };
 
-                var jsonString = JsonConvert.SerializeObject(level, settings);
+                string newJsonString = JsonConvert.SerializeObject(level, Formatting.Indented, settings);
+                jsonString += (jsonString.EndsWith("\n") ? "" : ",") + newJsonString + "]";
+
                 Debug.Log(jsonString);
 
                 File.WriteAllText(Application.dataPath + "/level_data.json", jsonString);
             }
         }
+        
+        if (GUILayout.Button("Update Selected Level Data in JSON", GetButtonStyle(Color.red, Color.white)))
+        {
+            UpdateLevelData();
+        }
+        GUILayout.EndHorizontal();
     }
 
 
@@ -315,12 +342,66 @@ public class LevelSaveEditor : Editor
     private string[] GetPrefabNames()
     {
         string[] names = new string[_prefabs.Length];
-
+    
         for (int i = 0; i < _prefabs.Length; i++)
         {
             names[i] = _prefabs[i].name;
         }
-
+    
         return names;
+    }
+    
+    private string[] GetLevelNumbers()
+    {
+        string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+        List<Level> levels = Level.ListFromJson(json);
+    
+        string[] prefabNames = new string[levels.Count];
+    
+        for (int i = 0; i < levels.Count; i++)
+        {
+            prefabNames[i] = levels[i].LevelNumber.ToString();
+        }
+    
+        return prefabNames;
+    }
+    
+    private void UpdateLevelData()
+    {
+
+        if (_selectedSceneIndex !=null)
+        {
+            string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+            List<Level> levels = Level.ListFromJson(json);
+
+            Level selectedLevel = levels[_selectedSceneIndex];
+
+            List<ObjectGroup> updatedObjectGroups = new List<ObjectGroup>();
+
+            // ObjectGroups güncellenir
+
+            Level updatedLevel = new Level(selectedLevel.LevelNumber, updatedObjectGroups.ToArray());
+
+            string updatedJson = JsonConvert.SerializeObject(updatedLevel, Formatting.Indented);
+
+            File.WriteAllText(Application.dataPath + "/level_data.json", updatedJson);
+        }
+       
+    }
+
+    private List<ObjectGroup> GetLevelData(int levelNumber)
+    {
+        string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+        List<Level> levels = Level.ListFromJson(json);
+
+        foreach (Level level in levels)
+        {
+            if (level.LevelNumber == levelNumber)
+            {
+                return level.ObjectGroups.ToList();
+            }
+        }
+
+        return null;
     }
 }
