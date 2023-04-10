@@ -24,6 +24,7 @@ public class LevelLoader : Singleton<LevelLoader>
         string json = File.ReadAllText(Application.dataPath + "/level_data.json");
         List<Level> levelList = Level.ListFromJson(json);
         
+        
         Debug.Log("asd");
     }
 }
