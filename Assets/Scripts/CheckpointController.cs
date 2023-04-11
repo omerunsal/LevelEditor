@@ -21,7 +21,7 @@ public class CheckpointController : MonoBehaviour
 
     private void Update()
     {
-        CountText.text = $"{floor.GetComponent<BasketCollectableCount>().CollectedCount} / " +
+        CountText.text = $"{floor.GetComponent<BasketCollectableCounter>().CollectedCount} / " +
                          CheckpointCount.ToString();
     }
 
@@ -39,9 +39,9 @@ public class CheckpointController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        if (floor.GetComponent<BasketCollectableCount>().CollectedCount >= CheckpointCount)
+        if (floor.GetComponent<BasketCollectableCounter>().CollectedCount >= CheckpointCount)
         {
-            GameManager.instance.CompletedLevelSectorCount++;
+            GameManager.Instance.CompletedLevelSectorCount++;
             StartCoroutine(OpenDoorCoroutine());
             checkpointGround.SetActive(true);
 
@@ -57,13 +57,13 @@ public class CheckpointController : MonoBehaviour
         }
         else
         {
-            GameManager.instance.LevelFail();
+            GameManager.Instance.LevelFail();
         }
     }
 
     IEnumerator OpenDoorCoroutine()
     {
-        if (floor.GetComponent<BasketCollectableCount>().CollectedCount >= CheckpointCount)
+        if (floor.GetComponent<BasketCollectableCounter>().CollectedCount >= CheckpointCount)
         {
             leftDoor.transform.DORotate(new Vector3(-60f, 90f, 90f), 1f);
             rightDoor.transform.DORotate(new Vector3(60f, 90f, 90f), 1f);
@@ -72,7 +72,7 @@ public class CheckpointController : MonoBehaviour
         }
         else
         {
-            GameManager.instance.LevelFail();
+            GameManager.Instance.LevelFail();
         }
     }
 }

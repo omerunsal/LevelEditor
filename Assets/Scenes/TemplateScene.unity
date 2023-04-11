@@ -479,7 +479,7 @@ RectTransform:
   - {fileID: 152895131}
   - {fileID: 1119640788}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1327,7 +1327,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1191747338
 GameObject:
@@ -1466,16 +1466,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8c350196b865245a8f0f53fde5eb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroy: 0
   singleSceneForAllLevels: 0
   startLevelCountForLoop: 0
   isThisLoaderScene: 0
   sameLevelOnFail: 0
   levels: []
   currentLevel: 0
-  gemCountInLevel: 0
-  gemCountTotal: 0
-  gemCountTotalTemp: 0
-  gemMultiplier: 0
   isMultiplied: 0
   isLevelStarted: 0
   isLevelCompleted: 0
@@ -1516,59 +1513,8 @@ Transform:
   - {fileID: 154216111}
   - {fileID: 1471426992}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1265657999
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1265658000}
-  - component: {fileID: 1265658001}
-  m_Layer: 0
-  m_Name: LevelLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1265658000
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265657999}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1265658001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265657999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c4c8d3e2c95f145be381aefe0c458a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroy: 0
-  ObjectGroups:
-  - {fileID: 7792494452870839104, guid: 6257e116e8f13834ca6ab7a28a4d6bd5, type: 3}
-  - {fileID: 2383093305851309511, guid: d7e8ea2477476914e8f5736627366cfa, type: 3}
-  - {fileID: 8510728347082061095, guid: 23531e12203827c4da5c4f618e18f440, type: 3}
-  - {fileID: 6329262740041804080, guid: 37d8737ab476fec4cb64e24d6eb3e381, type: 3}
-  - {fileID: 5896462677075084849, guid: 2cd9732aa8483d646aac5dc5bb7ed909, type: 3}
-  - {fileID: 6988999142483192095, guid: a9a610bd582263741b8f7b95be1da312, type: 3}
 --- !u!1 &1299531148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,36 +2032,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6508030414348489854}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1994296837
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1994296838}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1994296838
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994296837}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2019576534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,7 +2267,7 @@ PrefabInstance:
     - target: {fileID: 6179975467238244991, guid: 7a233ccfb3cc111479921d90dc41b7d4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6179975467238244991, guid: 7a233ccfb3cc111479921d90dc41b7d4,
         type: 3}

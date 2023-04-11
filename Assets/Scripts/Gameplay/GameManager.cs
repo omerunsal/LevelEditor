@@ -5,9 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-200)]
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager instance = null;
 
     public bool singleSceneForAllLevels;
     public int startLevelCountForLoop;
@@ -38,9 +37,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        CreateInstance();
-
-
         RandomizeLevels();
 
         AssignSaveLoadParameters();
@@ -63,18 +59,7 @@ public class GameManager : MonoBehaviour
         isMultiplied = false;
     }
 
-    private void CreateInstance()
-    {
-        // Create instance on awake
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+   
 
 
     private void RandomizeLevels()

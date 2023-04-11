@@ -16,10 +16,10 @@ public class FinishController : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameManager.instance.CompletedLevelSectorCount++;
+            GameManager.Instance.CompletedLevelSectorCount++;
             collider.enabled = false;
             other.transform.parent.GetComponent<PlayerController>().playerSettings.moveSpeed = 0f;
-            GameManager.instance.LevelComplete();
+            GameManager.Instance.LevelComplete();
         }
     }
 }

@@ -59,8 +59,8 @@ public class UIManager : MonoBehaviour
 
     private void LevelProgress()
     {
-        currentLevelNumberText.GetComponent<TextMeshProUGUI>().text = GameManager.instance.currentLevel.ToString();
-        nextLevelNumberText.GetComponent<TextMeshProUGUI>().text = (GameManager.instance.currentLevel + 1).ToString();
+        currentLevelNumberText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.currentLevel.ToString();
+        nextLevelNumberText.GetComponent<TextMeshProUGUI>().text = (GameManager.Instance.currentLevel + 1).ToString();
     }
 
     void Update()
@@ -71,15 +71,15 @@ public class UIManager : MonoBehaviour
 
     private void PaintSectorProgress()
     {
-        if (GameManager.instance.CompletedLevelSectorCount == 1)
+        if (GameManager.Instance.CompletedLevelSectorCount == 1)
         {
             firstSectorProgress.GetComponent<Image>().color = Color.green;
         }
-        else if (GameManager.instance.CompletedLevelSectorCount == 2)
+        else if (GameManager.Instance.CompletedLevelSectorCount == 2)
         {
             secondSectorProgress.GetComponent<Image>().color = Color.green;
         }
-        else if (GameManager.instance.CompletedLevelSectorCount == 3)
+        else if (GameManager.Instance.CompletedLevelSectorCount == 3)
         {
             thirdSectorProgress.GetComponent<Image>().color = Color.green;
         }
@@ -104,7 +104,7 @@ public class UIManager : MonoBehaviour
             levelCounts[i].GetComponent<TextMeshProUGUI>().font = font;
             levelCounts[i].GetComponent<TextMeshProUGUI>().color = mainColor;
             levelCounts[i].GetComponent<TextMeshProUGUI>().text =
-                "LEVEL " + GameManager.instance.currentLevel.ToString();
+                "LEVEL " + GameManager.Instance.currentLevel.ToString();
         }
 
         for (int i = 0; i < gameNameParentGameObject.transform.childCount; i++)
@@ -149,9 +149,9 @@ public class UIManager : MonoBehaviour
 
                 restartButton.SetActive(true);
 
-                GameManager.instance.isLevelStarted = true;
-                GameManager.instance.isLevelCompleted = false;
-                GameManager.instance.isLevelFailed = false;
+                GameManager.Instance.isLevelStarted = true;
+                GameManager.Instance.isLevelCompleted = false;
+                GameManager.Instance.isLevelFailed = false;
                 isLevelStartedForUI = true;
             }
         }
@@ -196,7 +196,7 @@ public class UIManager : MonoBehaviour
 
         yield return new WaitForSeconds(1.25f);
 
-        GameManager.instance.RestartLevel();
+        GameManager.Instance.RestartLevel();
     }
 
 
@@ -207,7 +207,7 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        GameManager.instance.NextLevel();
+        GameManager.Instance.NextLevel();
 
         isNextLevelButtonPressed = true;
     }
@@ -219,7 +219,7 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        GameManager.instance.RestartLevel();
+        GameManager.Instance.RestartLevel();
 
         isRestartButtonPressed = true;
     }
