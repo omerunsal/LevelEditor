@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,21 +11,18 @@ public class GameManager : MonoBehaviour
 
     public bool singleSceneForAllLevels;
     public int startLevelCountForLoop;
-    public bool isSDKComplete;
+
     public bool isThisLoaderScene;
     public bool sameLevelOnFail;
-    
-    public GameObject[] levels;
-    [HideInInspector] public int levelCountOfSDK;
 
+    public GameObject[] levels;
+
+    private string json;
     private const string level = "level";
-    private const string gem = "gem";
+  
 
     public int currentLevel;
-    public float gemCountInLevel;
-    public float gemCountTotal;
-    public float gemCountTotalTemp;
-    public float gemMultiplier;
+    
     [HideInInspector] public bool isMultiplied;
 
     public bool isLevelStarted;
@@ -36,17 +34,24 @@ public class GameManager : MonoBehaviour
     private int totalLevelCount;
     public GameObject loaderPanel;
 
+    public int CompletedLevelSectorCount;
+
     void Awake()
     {
         CreateInstance();
 
-        CheckSDKCompletion();
 
         RandomizeLevels();
 
         AssignSaveLoadParameters();
 
         SelectLoadType();
+        LoadJsonData();
+    }
+
+    private void LoadJsonData()
+    {
+        json = File.ReadAllText(Application.dataPath + "/level_data.json");
     }
 
     void Start()
@@ -54,7 +59,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
 
         isLevelStarted = false;
-        gemMultiplier = 1;
+        
         isMultiplied = false;
     }
 
@@ -71,18 +76,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void CheckSDKCompletion()
-    {
-        // Allocate first indexes in the build settings for SDK scenes
-        if (isSDKComplete)
-        {
-            levelCountOfSDK = 2;
-        }
-        else
-        {
-            levelCountOfSDK = 0;
-        }
-    }
 
     private void RandomizeLevels()
     {
@@ -93,7 +86,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            totalLevelCount = SceneManager.sceneCountInBuildSettings - levelCountOfSDK;
+            totalLevelCount = SceneManager.sceneCountInBuildSettings;
         }
 
         // Limit starting level count for the loop after main levels
@@ -169,13 +162,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(level, 1);
         }
 
-        if (!PlayerPrefs.HasKey(gem))
-        {
-            PlayerPrefs.SetInt(gem, 0);
-        }
-
         currentLevel = PlayerPrefs.GetInt(level);
-        gemCountTotal = PlayerPrefs.GetInt(gem);
+       
     }
 
     private void SelectLoadType()
@@ -194,8 +182,11 @@ public class GameManager : MonoBehaviour
 
     private void LevelLoad()
     {
+        string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+        List<Level> levelList = Level.ListFromJson(json);
+
         // Decide which scene to load
-        if (currentLevel > totalLevelCount)
+        if (currentLevel > levelList.Count)
         {
             currentLevel = randomLevels[(currentLevel - (startLevelCountForLoop - 1) - 1) % randomLevels.Length];
         }
@@ -203,14 +194,6 @@ public class GameManager : MonoBehaviour
         if (singleSceneForAllLevels && !isThisLoaderScene)
         {
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        }
-        else if (singleSceneForAllLevels && isThisLoaderScene)
-        {
-            SceneManager.LoadSceneAsync(levelCountOfSDK);
-        }
-        else
-        {
-            SceneManager.LoadSceneAsync(currentLevel + (levelCountOfSDK - 1));
         }
     }
 
@@ -237,9 +220,18 @@ public class GameManager : MonoBehaviour
         if (!(isLevelCompleted || isLevelFailed))
         {
             UIManager.instance.LevelCompleteForUI(0.5f);
-            currentLevel++;
-            gemCountTotalTemp = gemCountTotal;
-            gemCountTotal += gemCountInLevel;
+
+            List<Level> levelList = Level.ListFromJson(json);
+            if (currentLevel < levelList.Count)
+            {
+                currentLevel++;
+            }
+            else
+            {
+                currentLevel = 1;
+            }
+
+           
             Save();
             isLevelCompleted = true;
         }
@@ -251,12 +243,8 @@ public class GameManager : MonoBehaviour
         {
             UIManager.instance.LevelCompleteForUI(0.5f);
             currentLevel++;
-            gemMultiplier = multiplier;
-            gemCountInLevel *= gemMultiplier;
+          
             isMultiplied = true;
-            UIManager.instance.multiplierText.GetComponent<TextMeshProUGUI>().text = gemMultiplier + "X";
-            gemCountTotalTemp = gemCountTotal;
-            gemCountTotal += gemCountInLevel;
             Save();
             isLevelCompleted = true;
         }
@@ -271,27 +259,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+
     private void Save()
     {
         PlayerPrefs.SetInt(level, currentLevel);
-        PlayerPrefs.SetInt(gem, (int)gemCountTotal);
     }
 
     public void RestartLevel()
     {
-        if (sameLevelOnFail)
-        {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        }
-        else
-        {
-            LevelLoad();
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // if (sameLevelOnFail)
+        // {
+        //     SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        // }
+        // else
+        // {
+        //     LevelLoad();
+        // }
     }
 
     public void NextLevel()
     {
-        LevelLoad();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // LevelLoad();
     }
 }

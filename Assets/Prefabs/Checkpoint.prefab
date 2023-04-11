@@ -125,13 +125,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2232632360490993858}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.15, y: -0, z: 0.2083}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: -0, z: -2}
   m_LocalScale: {x: 4.000002, y: 0.25, z: 0.5833334}
   m_Children: []
   m_Father: {fileID: 5976641414462904475}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!33 &1056171030577451387
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -351,14 +351,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4165286428929575844}
-  m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -5, y: 0, z: 35.75}
   m_LocalScale: {x: 1.2, y: 1, z: 1.2}
   m_Children:
   - {fileID: 7938622692201028786}
   m_Father: {fileID: 4413270660639851812}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!33 &8778032413793383949
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -446,14 +446,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4760578139474036409}
-  m_LocalRotation: {x: -0.7071068, y: -0.000000018489468, z: 0.00000005601079, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 5.0000005, y: 0.00000031646107, z: 35.75}
   m_LocalScale: {x: 1.2, y: 1, z: 1.2}
   m_Children:
   - {fileID: 3260983347784454867}
   m_Father: {fileID: 4413270660639851812}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!33 &3414565683837063422
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -541,13 +541,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5963847805329674555}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.15, y: 0, z: 0.2083}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 4.000002, y: 0.25, z: 0.5833333}
   m_Children: []
   m_Father: {fileID: 383536841574912914}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!33 &7660389359020821810
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -698,7 +698,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6508030413671900486}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 6.8167357, z: 1}
@@ -715,6 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1a4b318b45b534b8dd76f57b0c18b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollectedCount: 0
 --- !u!1 &6508030413751687799
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +768,7 @@ MonoBehaviour:
   checkpointGround: {fileID: 8619050805014718870}
   leftDoor: {fileID: 383536841574912914}
   rightDoor: {fileID: 5976641414462904475}
+  floor: {fileID: 6508030413671900486}
   CheckpointCount: 50
   CountText: {fileID: 3937547554196065745}
 --- !u!65 &625087590
@@ -873,8 +875,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.5010643, z: 1}
+  m_Center: {x: 0, y: 0.75053215, z: 0}
 --- !u!1 &6508030413941184185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,8 +1154,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.8524551, z: 1}
+  m_Center: {x: 0, y: 0.42622757, z: 0}
 --- !u!1 &6508030414418375423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,8 +1375,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.5010633, z: 1}
+  m_Center: {x: 0, y: 0.7505317, z: 0}
 --- !u!1 &6705222792275363853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,7 +1427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4896108294829469033
 Transform:
   m_ObjectHideFlags: 0

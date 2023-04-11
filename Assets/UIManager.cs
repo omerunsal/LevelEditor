@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -10,15 +11,13 @@ public class UIManager : MonoBehaviour
 
     public TMP_FontAsset font;
     public string gameName;
-    
+
 
     public Color mainColor;
-    public Color gemColor;
+
 
     public GameObject[] levelCounts;
-    public GameObject[] gemCountInLevelTexts;
-    public GameObject[] gemCountTotalTexts;
-    public GameObject[] gemIcons;
+
     public GameObject gameNameParentGameObject;
     public GameObject tutorialHand;
     public GameObject tutorialText;
@@ -27,7 +26,12 @@ public class UIManager : MonoBehaviour
     public GameObject successText;
     public GameObject failText;
     public GameObject nextButtonText;
-    public GameObject multiplierText;
+
+    public GameObject firstSectorProgress;
+    public GameObject secondSectorProgress;
+    public GameObject thirdSectorProgress;
+    public GameObject currentLevelNumberText;
+    public GameObject nextLevelNumberText;
 
     public Color outline0;
 
@@ -36,15 +40,6 @@ public class UIManager : MonoBehaviour
     private bool isLevelFailedForUI;
     private bool isRestartButtonPressed;
     private bool isNextLevelButtonPressed;
-
-    private bool letCountGems;
-    private float timerCountGems;
-    private float timerForCreatingGems;
-    private float speedCountGems;
-    private int startGemCountInLevel;
-    private int endGemCountInLevel;
-    private int startGemCountTotal;
-    private int endGemCountTotal;
 
     void Awake()
     {
@@ -58,13 +53,36 @@ public class UIManager : MonoBehaviour
         isRestartButtonPressed = false;
 
         PrepareUI();
+
+        LevelProgress();
+    }
+
+    private void LevelProgress()
+    {
+        currentLevelNumberText.GetComponent<TextMeshProUGUI>().text = GameManager.instance.currentLevel.ToString();
+        nextLevelNumberText.GetComponent<TextMeshProUGUI>().text = (GameManager.instance.currentLevel + 1).ToString();
     }
 
     void Update()
     {
         LevelStartForUI();
+        PaintSectorProgress();
+    }
 
-        CountingGems();
+    private void PaintSectorProgress()
+    {
+        if (GameManager.instance.CompletedLevelSectorCount == 1)
+        {
+            firstSectorProgress.GetComponent<Image>().color = Color.green;
+        }
+        else if (GameManager.instance.CompletedLevelSectorCount == 2)
+        {
+            secondSectorProgress.GetComponent<Image>().color = Color.green;
+        }
+        else if (GameManager.instance.CompletedLevelSectorCount == 3)
+        {
+            thirdSectorProgress.GetComponent<Image>().color = Color.green;
+        }
     }
 
     private void CreateInstance()
@@ -85,32 +103,8 @@ public class UIManager : MonoBehaviour
         {
             levelCounts[i].GetComponent<TextMeshProUGUI>().font = font;
             levelCounts[i].GetComponent<TextMeshProUGUI>().color = mainColor;
-            levelCounts[i].GetComponent<TextMeshProUGUI>().text = "LEVEL " + GameManager.instance.currentLevel.ToString();
-        }
-
-        for (int i = 0; i < gemCountInLevelTexts.Length; i++)
-        {
-            gemCountInLevelTexts[i].GetComponent<TextMeshProUGUI>().font = font;
-            gemCountInLevelTexts[i].GetComponent<TextMeshProUGUI>().color = mainColor;
-            gemCountInLevelTexts[i].GetComponent<TextMeshProUGUI>().text = "0";
-
-            
-        }
-
-        for (int i = 0; i < gemCountTotalTexts.Length; i++)
-        {
-            gemCountTotalTexts[i].GetComponent<TextMeshProUGUI>().font = font;
-            gemCountTotalTexts[i].GetComponent<TextMeshProUGUI>().color = mainColor;
-            gemCountTotalTexts[i].GetComponent<TextMeshProUGUI>().text = GameManager.instance.gemCountTotal.ToString();
-
-            
-        }
-
-        for (int i = 0; i < gemIcons.Length; i++)
-        {
-            gemIcons[i].GetComponent<Image>().color = gemColor;
-
-            
+            levelCounts[i].GetComponent<TextMeshProUGUI>().text =
+                "LEVEL " + GameManager.instance.currentLevel.ToString();
         }
 
         for (int i = 0; i < gameNameParentGameObject.transform.childCount; i++)
@@ -130,17 +124,14 @@ public class UIManager : MonoBehaviour
 
         restartButton.GetComponent<Image>().color = mainColor;
 
-        multiplierText.GetComponent<TextMeshProUGUI>().font = font;
+
         Color transparentMainColor = mainColor;
         transparentMainColor.a = 0f;
-        multiplierText.GetComponent<TextMeshProUGUI>().color = transparentMainColor;
 
-      
 
         restartButton.SetActive(false);
-        
     }
-    
+
     public void LevelStartForUI()
     {
         if (Input.GetMouseButtonDown(0))
@@ -155,7 +146,7 @@ public class UIManager : MonoBehaviour
                 gameNameParentGameObject.SetActive(false);
                 tutorialHand.SetActive(false);
                 tutorialText.SetActive(false);
-             
+
                 restartButton.SetActive(true);
 
                 GameManager.instance.isLevelStarted = true;
@@ -184,8 +175,6 @@ public class UIManager : MonoBehaviour
         panels[1].SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
-
-        StartCoroutine(WaitForMultiply());
     }
 
     public void LevelFailForUI(float delay)
@@ -210,93 +199,6 @@ public class UIManager : MonoBehaviour
         GameManager.instance.RestartLevel();
     }
 
-    public void RefreshGemCountInLevel()
-    {
-        for (int i = 0; i < gemCountInLevelTexts.Length; i++)
-        {
-            gemCountInLevelTexts[i].GetComponent<TextMeshProUGUI>().text = GameManager.instance.gemCountInLevel.ToString();
-
-            if (gemCountInLevelTexts[i].activeInHierarchy)
-            {
-                gemCountInLevelTexts[i].GetComponent<Animator>().SetTrigger("PopUp");
-            }
-        }
-    }
-
-    private void RefreshGemCountTotal()
-    {
-        for (int i = 0; i < gemCountTotalTexts.Length; i++)
-        {
-            gemCountTotalTexts[i].GetComponent<TextMeshProUGUI>().text = GameManager.instance.gemCountTotalTemp.ToString();
-
-            if (gemCountTotalTexts[i].activeSelf)
-            {
-                gemCountTotalTexts[i].GetComponent<Animator>().SetTrigger("PopUp");
-            }
-        }
-    }
-
-    private void CountGems()
-    {
-        speedCountGems = 2f;
-        letCountGems = true;
-        startGemCountInLevel = (int)GameManager.instance.gemCountInLevel;
-        endGemCountInLevel = 0;
-        startGemCountTotal = (int)GameManager.instance.gemCountTotalTemp;
-        endGemCountTotal = (int)GameManager.instance.gemCountTotal;
-    }
-
-    private void CountingGems()
-    {
-        if (letCountGems)
-        {
-            timerCountGems += Time.deltaTime * speedCountGems;
-            timerForCreatingGems += Time.deltaTime * speedCountGems;
-
-            GameManager.instance.gemCountInLevel = (int)Mathf.Lerp(startGemCountInLevel, endGemCountInLevel, timerCountGems);
-            GameManager.instance.gemCountTotalTemp = (int)Mathf.Lerp(startGemCountTotal, endGemCountTotal, timerCountGems);
-
-            RefreshGemCountInLevel();
-            RefreshGemCountTotal();
-
-            if (timerCountGems >= 1f)
-            {
-                timerCountGems = 0f;
-                letCountGems = false;
-            }
-
-            if (timerForCreatingGems >= 0.2f)
-            {
-                CreateFlyingGems();
-                timerForCreatingGems = 0f;
-            }
-        }
-    }
-
-    private void CreateFlyingGems()
-    {
-        GameObject flyingGem = Instantiate(gemIcons[2], gemIcons[2].transform.position, Quaternion.identity, transform);
-        flyingGem.transform.GetChild(0).gameObject.SetActive(false);
-        flyingGem.transform.GetChild(1).gameObject.SetActive(false);
-    }
-
-    IEnumerator WaitForMultiply()
-    {
-        if (GameManager.instance.isMultiplied)
-        {
-            multiplierText.GetComponent<Animator>().SetTrigger("Multiply");
-
-            yield return new WaitForSeconds(0.1f);
-
-            RefreshGemCountInLevel();
-
-            yield return new WaitForSeconds(0.3f);
-        }
-
-        yield return new WaitForSeconds(0.4f);
-
-        CountGems();
-    }
 
     public void NextLevelButton()
     {
