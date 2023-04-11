@@ -13,12 +13,6 @@ public class PlayerController : CharacterController
 
     public bool GamePaused;
 
-    
-    private void Start()
-    {
-        
-    }
-
     void Update()
     {
         InputType();
@@ -36,9 +30,14 @@ public class PlayerController : CharacterController
     {
        
         base.Movement();
-        
+       
     }
-    
+
+    private void LateUpdate()
+    {
+       
+    }
+
 
     private void InputType()
     {

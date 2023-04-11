@@ -24,7 +24,7 @@ public class Level
     {
         JsonSerializerSettings settings = new JsonSerializerSettings
         {
-            ContractResolver = new MyJsonContractResolver()
+            ContractResolver = new JsonContractResolver()
         };
 
         return JsonConvert.SerializeObject(this, settings);
@@ -34,7 +34,7 @@ public class Level
     {
         var settings = new JsonSerializerSettings
         {
-            ContractResolver = new MyJsonContractResolver()
+            ContractResolver = new JsonContractResolver()
         };
 
         return JsonConvert.DeserializeObject<Level>(jsonString, settings);
@@ -42,16 +42,9 @@ public class Level
     
     public static List<Level> ListFromJson(string jsonString)
     {
-        // var settings = new JsonSerializerSettings
-        // {
-        //     ContractResolver = new MyJsonContractResolver()
-        // };
-        //
-        // return JsonConvert.DeserializeObject<List<Level>>(jsonString, settings);
-        
         var settings = new JsonSerializerSettings
         {
-            ContractResolver = new MyJsonContractResolver()
+            ContractResolver = new JsonContractResolver()
         };
         
         try
@@ -64,18 +57,5 @@ public class Level
             return JsonConvert.DeserializeObject<List<Level>>(jsonString, settings);
         }
         
-        // var settings = new JsonSerializerSettings
-        // {
-        //     ContractResolver = new MyJsonContractResolver()
-        // };
-        //
-        // var result = JsonConvert.DeserializeObject<List<Level>>(jsonString, settings);
-        //
-        // if (result == null || result.Count == 0)
-        // {
-        //     throw new JsonSerializationException("Deserialization failed or empty JSON string");
-        // }
-        //
-        // return result;
     }
 }

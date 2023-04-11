@@ -8,38 +8,32 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public bool singleSceneForAllLevels;
-    public int startLevelCountForLoop;
-
     public bool isThisLoaderScene;
     public bool sameLevelOnFail;
-
-    public GameObject[] levels;
-
-    private string json;
-    private const string level = "level";
-
-    
-    public int currentLevel;
-
-    [HideInInspector] public bool isMultiplied;
-
     public bool isLevelStarted;
     public bool isLevelCompleted;
     public bool isLevelFailed;
-
-    private List<int> levelNumbers;
+    
+    public GameObject[] levels;
+    public GameObject loaderPanel;
+    
+    public int currentLevel;
+    public int startLevelCountForLoop;
     private int[] randomLevels;
     private int totalLevelCount;
-    public GameObject loaderPanel;
-
     public int CompletedLevelSectorCount;
+    private List<int> levelNumbers;
+    
     private string resourcePath = "/Resources/level_data.json";
+    private string json;
+    private const string level = "level";
+    
+    [HideInInspector] public bool isMultiplied;
+    
     void Awake()
     {
         RandomizeLevels();
-
         AssignSaveLoadParameters();
-
         SelectLoadType();
         LoadJsonData();
     }

@@ -20,15 +20,13 @@ public class CharacterController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    
-
-
     protected virtual void Movement()
     {
         if (GameManager.Instance.isLevelStarted)
         {
+            // transform.position = LimitPosition(transform.position);
             rigidbody.velocity = new Vector3(direction.x,direction.y,1f) * playerSettings.moveSpeed;
-           // transform.position= LimitPosition(transform.position); 
+            
         }
         else
         {
@@ -45,7 +43,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    private Vector3 LimitPosition(Vector3 pos)
+    public Vector3 LimitPosition(Vector3 pos)
     {
         float x = Mathf.Clamp(pos.x, xLimits.x, xLimits.y);
         

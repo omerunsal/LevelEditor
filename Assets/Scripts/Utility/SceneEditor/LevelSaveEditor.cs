@@ -144,7 +144,7 @@ public class LevelSaveEditor : Editor
 
                 var settings = new JsonSerializerSettings
                 {
-                    ContractResolver = new MyJsonContractResolver()
+                    ContractResolver = new JsonContractResolver()
                 };
 
                 string newJsonString = JsonConvert.SerializeObject(level, Formatting.Indented, settings);
@@ -224,13 +224,17 @@ public class LevelSaveEditor : Editor
 
                 var settings = new JsonSerializerSettings
                 {
-                    ContractResolver = new MyJsonContractResolver()
+                    ContractResolver = new JsonContractResolver()
                 };
                 string updatedJson = JsonConvert.SerializeObject(levels, Formatting.Indented, settings);
 
                 File.WriteAllText(Application.dataPath + resourcePath, updatedJson);
                 
                 Debug.Log("Succesfully Update Json file");
+            }
+            else
+            {
+                Debug.Log("You can't update Scene 0(Editor Scene)");
             }
         }
         GUILayout.EndHorizontal();

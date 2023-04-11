@@ -23,7 +23,7 @@ public class ObjectGroup
     {
         JsonSerializerSettings settings = new JsonSerializerSettings
         {
-            ContractResolver = new MyJsonContractResolver()
+            ContractResolver = new JsonContractResolver()
         };
 
         return JsonConvert.SerializeObject(this, settings);
@@ -33,7 +33,7 @@ public class ObjectGroup
     {
         var settings = new JsonSerializerSettings
         {
-            ContractResolver = new MyJsonContractResolver()
+            ContractResolver = new JsonContractResolver()
         };
 
         return JsonConvert.DeserializeObject<ObjectGroup>(jsonString, settings);

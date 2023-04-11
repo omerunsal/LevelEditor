@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float followSpeed;
     private Vector3 offset;
-    // Use this for initialization
+    
     void Start()
     {
         offset = transform.position - target.position;
@@ -17,9 +17,8 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         Vector3 targetPosition = target.position + offset;
-        targetPosition.x = 0f; // Set the y-axis position of the target to the current y-axis position of the camera
+        targetPosition.x = 0f; 
 
-        // Move the camera towards the target position with a smooth lerp
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
     }
 }

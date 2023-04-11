@@ -15,10 +15,6 @@ public class CheckpointController : MonoBehaviour
     public int CheckpointCount;
     public TextMeshProUGUI CountText;
 
-    private void Awake()
-    {
-    }
-
     private void Update()
     {
         CountText.text = $"{floor.GetComponent<BasketCollectableCounter>().CollectedCount} / " +
