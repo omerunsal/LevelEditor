@@ -245,6 +245,34 @@
         "Position": {
           "x": 0.0,
           "y": 0.0,
+          "z": 47.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 57.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
           "z": 9.0
         },
         "Rotation": {
@@ -271,30 +299,16 @@
       {
         "ObjectShape": 0,
         "Position": {
-          "x": 0.0,
+          "x": -1.0,
           "y": 0.0,
-          "z": 47.0
+          "z": 15.0
         },
         "Rotation": {
           "x": 0.0,
           "y": 0.0,
           "z": 0.0
         },
-        "GroupLayout": 0
-      },
-      {
-        "ObjectShape": 1,
-        "Position": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 57.0
-        },
-        "Rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
-        },
-        "GroupLayout": 0
+        "GroupLayout": 1
       }
     ],
     "FirstCheckpointCount": 15,
@@ -519,6 +533,20 @@
           "z": 0.0
         },
         "GroupLayout": 2
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 3.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
       }
     ],
     "FirstCheckpointCount": 5,
@@ -774,6 +802,27 @@
       }
     ],
     "FirstCheckpointCount": 15,
-    "SecondCheckpointCount": 25
+    "SecondCheckpointCount": 10
+  },
+  {
+    "LevelNumber": 13,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": -1.0,
+          "y": 0.0,
+          "z": 5.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      }
+    ],
+    "FirstCheckpointCount": 5,
+    "SecondCheckpointCount": 0
   }
 ]

@@ -23,7 +23,7 @@ public class LevelSaveEditor : Editor
     private int firstCheckpointVal = 0;
     private int secondCheckpointVal = 0;
 
-   
+    string jsonString = "";
 
     private void OnEnable()
     {
@@ -44,7 +44,10 @@ public class LevelSaveEditor : Editor
     {
         base.OnInspectorGUI();
 
-
+        Platform platform = (Platform)target; 
+        jsonString = File.ReadAllText(Application.dataPath + "/level_data.json");
+        
+        
         GUILayout.BeginHorizontal(EditorStyles.helpBox);
         GUILayout.Label("Object Controls", EditorStyles.boldLabel);
         GUILayout.EndHorizontal();
@@ -54,8 +57,8 @@ public class LevelSaveEditor : Editor
         EditorGUILayout.EndHorizontal();
         
         
-
-        if (GUILayout.Button("Add Object Group", GetButtonStyle(Color.green, Color.black)))
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Add New Object Group", GetButtonStyle(Color.green, Color.black)))
         {
             GameObject prefab = _prefabs[_selectedPrefabIndex];
             // GameObject instance = Instantiate(prefab); //TODO: silinebilir.
@@ -66,7 +69,20 @@ public class LevelSaveEditor : Editor
             instance.name = prefab.name;
             instance.transform.parent = ((Component)target).transform;
         }
+        
+        if (GUILayout.Button("Delete Last Added Object Group", GetButtonStyle(Color.red, Color.black)))
+        {
+            
 
+            if (platform.transform.childCount > 0)
+            {
+                Transform lastObjectTransform = platform.transform.GetChild(platform.transform.childCount - 1);
+                
+                DestroyImmediate(lastObjectTransform.gameObject);
+            }
+        }
+        EditorGUILayout.EndHorizontal();
+        
         GUILayout.BeginHorizontal(EditorStyles.helpBox);
         GUILayout.Label("Level Settings", EditorStyles.boldLabel);
         GUILayout.EndHorizontal();
@@ -92,14 +108,14 @@ public class LevelSaveEditor : Editor
         GUILayout.BeginHorizontal(); //sahne butonları buradaydı
         if (GUILayout.Button("Save As New Level Data in JSON"))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
             int levelNumber = 1;
-            string jsonString = "";
+           
 
            
             if (File.Exists(Application.dataPath + "/level_data.json"))
             {
-                jsonString = File.ReadAllText(Application.dataPath + "/level_data.json");
+                // jsonString = File.ReadAllText(Application.dataPath + "/level_data.json");
                
                 List<Level> levels = Level.ListFromJson(jsonString);
                 if (levels != null && levels.Count > 0)
@@ -151,7 +167,7 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("Load Selected Scene"))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {
@@ -171,7 +187,7 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("Reset Editor Scene"))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {
@@ -192,9 +208,9 @@ public class LevelSaveEditor : Editor
 
        
         GUILayout.BeginHorizontal(); //update the selected buradaydı
-        if (GUILayout.Button("Update Selected Level Data in JSON", GetButtonStyle(Color.red, Color.white)))
+        if (GUILayout.Button("Update Selected Level Data in JSON", GetButtonStyle(Color.red, Color.black)))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
             
             if (_selectedSceneIndex != null && platform.transform.childCount > 0)
             {
@@ -244,7 +260,7 @@ public class LevelSaveEditor : Editor
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("▲", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {
@@ -262,7 +278,7 @@ public class LevelSaveEditor : Editor
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("◀", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {
@@ -274,7 +290,7 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("▼", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {
@@ -286,7 +302,7 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("▶", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {
@@ -308,7 +324,7 @@ public class LevelSaveEditor : Editor
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("↺", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {
@@ -320,7 +336,7 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("↻", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            Platform platform = (Platform)target;
+            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {

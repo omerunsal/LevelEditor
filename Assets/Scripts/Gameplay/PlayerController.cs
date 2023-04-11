@@ -16,7 +16,7 @@ public class PlayerController : CharacterController
     
     private void Start()
     {
-        // playerSettings.moveSpeed = 12.5f;
+        
     }
 
     void Update()

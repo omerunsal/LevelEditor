@@ -248,7 +248,7 @@ public class GameManager : Singleton<GameManager>
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         // if (sameLevelOnFail)
         // {
         //     SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
@@ -261,7 +261,7 @@ public class GameManager : Singleton<GameManager>
 
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         // LevelLoad();
     }
 }
