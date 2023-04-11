@@ -12,7 +12,7 @@ public class BasketCollectableCounter : MonoBehaviour
         if (other.GetComponent<Collectable>())
         {
             CollectedCount++;
-            Destroy(other);
+            Destroy(other.gameObject);
         }
     }
 }
