@@ -52,6 +52,8 @@ public class LevelSaveEditor : Editor
         EditorGUILayout.BeginHorizontal();
         _selectedPrefabIndex = EditorGUILayout.Popup("Object Group", _selectedPrefabIndex, GetPrefabNames());
         EditorGUILayout.EndHorizontal();
+        
+        
 
         if (GUILayout.Button("Add Object Group", GetButtonStyle(Color.green, Color.black)))
         {
@@ -75,12 +77,12 @@ public class LevelSaveEditor : Editor
 
         GUILayout.BeginHorizontal();
         GUILayout.Label("1.Checkpoint Count:");
-        firstCheckpointVal = int.Parse(GUILayout.TextField(firstCheckpointVal.ToString()));
+        int.TryParse(GUILayout.TextField(firstCheckpointVal.ToString()), out firstCheckpointVal);
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
         GUILayout.Label("2.Checkpoint Count:");
-        secondCheckpointVal = int.Parse(GUILayout.TextField(secondCheckpointVal.ToString()));
+        int.TryParse(GUILayout.TextField(secondCheckpointVal.ToString()), out secondCheckpointVal);
         GUILayout.EndHorizontal();
         
         GUILayout.BeginHorizontal();
@@ -94,15 +96,15 @@ public class LevelSaveEditor : Editor
             int levelNumber = 1;
             string jsonString = "";
 
-            // Json dosyasındaki son veriyi okuyoruz
+           
             if (File.Exists(Application.dataPath + "/level_data.json"))
             {
                 jsonString = File.ReadAllText(Application.dataPath + "/level_data.json");
-                // var levels = JsonConvert.DeserializeObject<List<Level>>(jsonString);
+               
                 List<Level> levels = Level.ListFromJson(jsonString);
                 if (levels != null && levels.Count > 0)
                 {
-                    levelNumber = levels[levels.Count - 1].LevelNumber + 1; // Son level number'ı alıp bir ekleyerek yeni level number'ı belirliyoruz
+                    levelNumber = levels[levels.Count - 1].LevelNumber + 1; 
                 }
                 
                 jsonString = jsonString.TrimEnd(']');
@@ -138,7 +140,8 @@ public class LevelSaveEditor : Editor
                 };
 
                 string newJsonString = JsonConvert.SerializeObject(level, Formatting.Indented, settings);
-                jsonString += (jsonString.EndsWith("\n") ? "" : ",") + newJsonString + "]";
+                // jsonString += (jsonString.EndsWith("\n") ? "" : ",") + newJsonString + "]";
+                 jsonString += "," + newJsonString + "]";
 
                 File.WriteAllText(Application.dataPath + "/level_data.json", jsonString);
                 
@@ -163,6 +166,7 @@ public class LevelSaveEditor : Editor
             }
             
             LoadSelectedLevel();
+            Repaint();
         }
 
         if (GUILayout.Button("Reset Editor Scene"))
@@ -186,6 +190,7 @@ public class LevelSaveEditor : Editor
 
         GUILayout.EndHorizontal();
 
+       
         GUILayout.BeginHorizontal(); //update the selected buradaydı
         if (GUILayout.Button("Update Selected Level Data in JSON", GetButtonStyle(Color.red, Color.white)))
         {
@@ -227,6 +232,7 @@ public class LevelSaveEditor : Editor
             }
         }
         GUILayout.EndHorizontal();
+        EditorGUILayout.HelpBox("NOTE: Of course, you can rotate and move objects directly from the scene. If you click the Save or Update buttons, it will still write the JSON data for the selected level.", MessageType.Info);
 
         GUILayout.BeginHorizontal(EditorStyles.helpBox);
         GUILayout.Label("Movement Settings", EditorStyles.boldLabel);
@@ -326,6 +332,7 @@ public class LevelSaveEditor : Editor
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
 
+        
     }
 
     private void LoadSelectedLevel()
@@ -350,6 +357,8 @@ public class LevelSaveEditor : Editor
                 }
             }
         }
+        firstCheckpointVal = selectedLevel.FirstCheckpointCount;
+        secondCheckpointVal = selectedLevel.SecondCheckpointCount;
     }
 
 

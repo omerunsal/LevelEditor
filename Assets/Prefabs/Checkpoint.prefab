@@ -188,7 +188,7 @@ BoxCollider:
   m_GameObject: {fileID: 2232632360490993858}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -415,7 +415,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 4165286428929575844}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -510,7 +510,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 4760578139474036409}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -604,7 +604,7 @@ BoxCollider:
   m_GameObject: {fileID: 5963847805329674555}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -701,8 +701,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 6.8167357, z: 1}
-  m_Center: {x: 0, y: 2.9083679, z: 0}
+  m_Size: {x: 1.1859145, y: 6.8167357, z: 1.1398907}
+  m_Center: {x: -0.0037184656, y: 2.9083679, z: -0.069945335}
 --- !u!114 &2022153161740494738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,8 +782,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.77186, y: 1.0319424, z: 1.3679047}
-  m_Center: {x: -0.23083591, y: 0.36733723, z: 24.143318}
+  m_Size: {x: 9.77186, y: 1.0319424, z: 0.537632}
+  m_Center: {x: -0.23083591, y: 0.36733723, z: 24.558455}
 --- !u!1 &6508030413814270932
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,8 +875,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.5010643, z: 1}
-  m_Center: {x: 0, y: 0.75053215, z: 0}
+  m_Size: {x: 2.995246, y: 1.6735716, z: 1}
+  m_Center: {x: 0.9976229, y: 0.3367858, z: 0}
 --- !u!1 &6508030413941184185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,8 +1375,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.5010633, z: 1}
-  m_Center: {x: 0, y: 0.7505317, z: 0}
+  m_Size: {x: 2.6769762, y: 1.7213087, z: 1}
+  m_Center: {x: -0.83848804, y: 0.36065435, z: 0}
 --- !u!1 &6705222792275363853
 GameObject:
   m_ObjectHideFlags: 0

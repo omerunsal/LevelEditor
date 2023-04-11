@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-200)]
 public class GameManager : Singleton<GameManager>
 {
-
     public bool singleSceneForAllLevels;
     public int startLevelCountForLoop;
 
@@ -18,10 +17,10 @@ public class GameManager : Singleton<GameManager>
 
     private string json;
     private const string level = "level";
-  
 
-    public int currentLevel;
     
+    public int currentLevel;
+
     [HideInInspector] public bool isMultiplied;
 
     public bool isLevelStarted;
@@ -55,11 +54,9 @@ public class GameManager : Singleton<GameManager>
         Application.targetFrameRate = 60;
 
         isLevelStarted = false;
-        
+
         isMultiplied = false;
     }
-
-   
 
 
     private void RandomizeLevels()
@@ -148,7 +145,6 @@ public class GameManager : Singleton<GameManager>
         }
 
         currentLevel = PlayerPrefs.GetInt(level);
-       
     }
 
     private void SelectLoadType()
@@ -216,7 +212,7 @@ public class GameManager : Singleton<GameManager>
                 currentLevel = 1;
             }
 
-           
+
             Save();
             isLevelCompleted = true;
         }
@@ -228,7 +224,7 @@ public class GameManager : Singleton<GameManager>
         {
             UIManager.instance.LevelCompleteForUI(0.5f);
             currentLevel++;
-          
+
             isMultiplied = true;
             Save();
             isLevelCompleted = true;

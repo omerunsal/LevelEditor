@@ -31,13 +31,13 @@ public class CheckpointController : MonoBehaviour
         {
             StartCoroutine(CheckpointCountCoroutine());
             GetComponent<Collider>().enabled = false;
-            other.transform.parent.GetComponent<PlayerController>().playerSettings.moveSpeed = 0f;
+            GameManager.Instance.isLevelStarted = false;
         }
     }
 
     IEnumerator CheckpointCountCoroutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         if (floor.GetComponent<BasketCollectableCounter>().CollectedCount >= CheckpointCount)
         {
@@ -50,8 +50,10 @@ public class CheckpointController : MonoBehaviour
                 checkpointGround.transform.localPosition.z);
             yield return checkpointGround.transform.DOLocalMove(targetPos, duration).WaitForCompletion();
 
-            GameObject.FindGameObjectWithTag("Player").transform.parent.GetComponent<PlayerController>().playerSettings
-                .moveSpeed = 15f;
+            
+            GameManager.Instance.isLevelStarted = true;
+            // GameObject.FindGameObjectWithTag("Player").transform.parent.GetComponent<PlayerController>().playerSettings
+            //     .moveSpeed = 15f;
             yield return null;
 
         }

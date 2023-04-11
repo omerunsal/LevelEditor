@@ -18,7 +18,8 @@ public class FinishController : MonoBehaviour
         {
             GameManager.Instance.CompletedLevelSectorCount++;
             collider.enabled = false;
-            other.transform.parent.GetComponent<PlayerController>().playerSettings.moveSpeed = 0f;
+            GameManager.Instance.isLevelStarted = false;
+            // other.transform.parent.GetComponent<PlayerController>().playerSettings.moveSpeed = 0f;
             GameManager.Instance.LevelComplete();
         }
     }

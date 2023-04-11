@@ -182,6 +182,34 @@
         "Position": {
           "x": 0.0,
           "y": 0.0,
+          "z": 44.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 55.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
           "z": 9.0
         },
         "Rotation": {
@@ -196,7 +224,7 @@
         "Position": {
           "x": 0.0,
           "y": 0.0,
-          "z": -1.00000048
+          "z": 19.65
         },
         "Rotation": {
           "x": 0.0,
@@ -206,75 +234,546 @@
         "GroupLayout": 2
       }
     ],
-    "FirstCheckpointCount": 0,
+    "FirstCheckpointCount": 15,
+    "SecondCheckpointCount": 15
+  },
+  {
+    "LevelNumber": 4,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 19.65
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 47.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 57.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      }
+    ],
+    "FirstCheckpointCount": 15,
+    "SecondCheckpointCount": 15
+  },
+  {
+    "LevelNumber": 5,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 18.65
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      }
+    ],
+    "FirstCheckpointCount": 3,
     "SecondCheckpointCount": 0
   },
-{
-  "LevelNumber": 4,
-  "ObjectGroups": [
-    {
-      "ObjectShape": 0,
-      "Position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 9.0
+  {
+    "LevelNumber": 6,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
       },
-      "Rotation": {
-        "x": 0.0,
-        "y": 330.0,
-        "z": 0.0
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 19.65
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
       },
-      "GroupLayout": 1
-    },
-    {
-      "ObjectShape": 1,
-      "Position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 18.65
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 44.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
       },
-      "Rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 55.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      }
+    ],
+    "FirstCheckpointCount": 10,
+    "SecondCheckpointCount": 0
+  },
+  {
+    "LevelNumber": 7,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
       },
-      "GroupLayout": 2
-    }
-  ],
-  "FirstCheckpointCount": 5,
-  "SecondCheckpointCount": 0
-},{
-  "LevelNumber": 5,
-  "ObjectGroups": [
-    {
-      "ObjectShape": 0,
-      "Position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 9.0
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 19.65
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
       },
-      "Rotation": {
-        "x": 0.0,
-        "y": 330.0,
-        "z": 0.0
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 44.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
       },
-      "GroupLayout": 1
-    },
-    {
-      "ObjectShape": 1,
-      "Position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 18.65
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 55.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      }
+    ],
+    "FirstCheckpointCount": 5,
+    "SecondCheckpointCount": 0
+  },
+  {
+    "LevelNumber": 8,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 44.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
       },
-      "Rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 55.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
       },
-      "GroupLayout": 2
-    }
-  ],
-  "FirstCheckpointCount": 3,
-  "SecondCheckpointCount": 0
-}]
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 19.65
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      }
+    ],
+    "FirstCheckpointCount": 5,
+    "SecondCheckpointCount": 10
+  },
+  {
+    "LevelNumber": 9,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 19.65
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 44.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 55.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      }
+    ],
+    "FirstCheckpointCount": 5,
+    "SecondCheckpointCount": 0
+  },
+  {
+    "LevelNumber": 10,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 44.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 55.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 19.65
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      }
+    ],
+    "FirstCheckpointCount": 15,
+    "SecondCheckpointCount": 12
+  },
+  {
+    "LevelNumber": 11,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 44.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 55.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 19.65
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      }
+    ],
+    "FirstCheckpointCount": 15,
+    "SecondCheckpointCount": 0
+  },
+  {
+    "LevelNumber": 12,
+    "ObjectGroups": [
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 44.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 0
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 55.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 19.65
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      }
+    ],
+    "FirstCheckpointCount": 15,
+    "SecondCheckpointCount": 25
+  }
+]

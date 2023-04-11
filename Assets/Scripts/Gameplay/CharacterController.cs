@@ -25,9 +25,24 @@ public class CharacterController : MonoBehaviour
 
     protected virtual void Movement()
     {
-        rigidbody.velocity = direction * playerSettings.moveSpeed;
+        // direction.z = 1f;
+        if (GameManager.Instance.isLevelStarted)
+        {
+            rigidbody.velocity = new Vector3(direction.x,direction.y,1f) * playerSettings.moveSpeed;
+            LimitPosition(transform.position); 
+        }
+        else
+        {
+            rigidbody.velocity = Vector3.zero;
+        }
+        
+        
+        // Vector3 forwardMove = Vector3.forward * playerSettings.moveSpeed;
+        // rigidbody.velocity = forwardMove + new Vector3(direction.x, direction.y, 0f);
+        // rigidbody.MovePosition(rigidbody.position+forwardMove+ new Vector3(direction.x,direction.y,0f));
+       
         // rigidbody.velocity = Vector3.forward * playerSettings.moveSpeed;
-        LimitPosition(transform.position); 
+        
     }
 
     protected void RotateToDirection()

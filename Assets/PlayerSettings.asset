@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b97dcf7f76463f80d6778f92c31927, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 13
   rotateSpeed: 0
   collectorColor: {r: 0, g: 0, b: 0, a: 0}
