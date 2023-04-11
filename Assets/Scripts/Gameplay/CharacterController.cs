@@ -25,24 +25,15 @@ public class CharacterController : MonoBehaviour
 
     protected virtual void Movement()
     {
-        // direction.z = 1f;
         if (GameManager.Instance.isLevelStarted)
         {
             rigidbody.velocity = new Vector3(direction.x,direction.y,1f) * playerSettings.moveSpeed;
-            LimitPosition(transform.position); 
+           // transform.position= LimitPosition(transform.position); 
         }
         else
         {
             rigidbody.velocity = Vector3.zero;
         }
-        
-        
-        // Vector3 forwardMove = Vector3.forward * playerSettings.moveSpeed;
-        // rigidbody.velocity = forwardMove + new Vector3(direction.x, direction.y, 0f);
-        // rigidbody.MovePosition(rigidbody.position+forwardMove+ new Vector3(direction.x,direction.y,0f));
-       
-        // rigidbody.velocity = Vector3.forward * playerSettings.moveSpeed;
-        
     }
 
     protected void RotateToDirection()
@@ -57,9 +48,9 @@ public class CharacterController : MonoBehaviour
     private Vector3 LimitPosition(Vector3 pos)
     {
         float x = Mathf.Clamp(pos.x, xLimits.x, xLimits.y);
-        float z = Mathf.Clamp(pos.z, zLimits.x, zLimits.y);
+        
 
-        Vector3 limitedPos = new Vector3(x, pos.y, z);
+        Vector3 limitedPos = new Vector3(x, pos.y, pos.z);
         return limitedPos;
     }
 }

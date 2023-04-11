@@ -15,15 +15,14 @@ public class LevelSaveEditor : Editor
 {
     private int _selectedPrefabIndex = 0;
     private GameObject[] _prefabs;
-    // private string _levelName = "";
     private string[] _sceneNames;
     private int _selectedSceneIndex;
-    // private int selectedChildIndex = 0;
     
     private int firstCheckpointVal = 0;
     private int secondCheckpointVal = 0;
 
     string jsonString = "";
+    private string resourcePath = "/Resources/level_data.json";
 
     private void OnEnable()
     {
@@ -37,6 +36,7 @@ public class LevelSaveEditor : Editor
             string scenePath = AssetDatabase.GUIDToAssetPath(scenePaths[i]);
             _sceneNames[i] = Path.GetFileNameWithoutExtension(scenePath);
         }
+        jsonString = File.ReadAllText(Application.dataPath + resourcePath);
     }
 
 
@@ -45,7 +45,7 @@ public class LevelSaveEditor : Editor
         base.OnInspectorGUI();
 
         Platform platform = (Platform)target; 
-        jsonString = File.ReadAllText(Application.dataPath + "/level_data.json");
+         jsonString = File.ReadAllText(Application.dataPath + resourcePath);
         
         
         GUILayout.BeginHorizontal(EditorStyles.helpBox);
@@ -61,7 +61,6 @@ public class LevelSaveEditor : Editor
         if (GUILayout.Button("Add New Object Group", GetButtonStyle(Color.green, Color.black)))
         {
             GameObject prefab = _prefabs[_selectedPrefabIndex];
-            // GameObject instance = Instantiate(prefab); //TODO: silinebilir.
 
             ObjectGroupBuilder objectGroupBuilder = FindObjectOfType<ObjectGroupBuilder>();
             GameObject instance = objectGroupBuilder.BuildProduction(prefab.GetComponent<CollectableGroup>());
@@ -87,10 +86,6 @@ public class LevelSaveEditor : Editor
         GUILayout.Label("Level Settings", EditorStyles.boldLabel);
         GUILayout.EndHorizontal();
 
-        // GUILayout.BeginHorizontal();
-        // _levelName = EditorGUILayout.TextField("Level Name", _levelName);
-        // GUILayout.EndHorizontal();
-
         GUILayout.BeginHorizontal();
         GUILayout.Label("1.Checkpoint Count:");
         int.TryParse(GUILayout.TextField(firstCheckpointVal.ToString()), out firstCheckpointVal);
@@ -105,17 +100,14 @@ public class LevelSaveEditor : Editor
         _selectedSceneIndex = EditorGUILayout.Popup("Scenes (Level 0 means Editor Scene)", _selectedSceneIndex, GetLevelNumbers());
         GUILayout.EndHorizontal();
 
-        GUILayout.BeginHorizontal(); //sahne butonları buradaydı
+        GUILayout.BeginHorizontal();
         if (GUILayout.Button("Save As New Level Data in JSON"))
         {
-            // Platform platform = (Platform)target;
             int levelNumber = 1;
            
-
-           
-            if (File.Exists(Application.dataPath + "/level_data.json"))
+            if (File.Exists(Application.dataPath + resourcePath))
             {
-                // jsonString = File.ReadAllText(Application.dataPath + "/level_data.json");
+                 jsonString = File.ReadAllText(Application.dataPath + resourcePath);
                
                 List<Level> levels = Level.ListFromJson(jsonString);
                 if (levels != null && levels.Count > 0)
@@ -156,10 +148,9 @@ public class LevelSaveEditor : Editor
                 };
 
                 string newJsonString = JsonConvert.SerializeObject(level, Formatting.Indented, settings);
-                // jsonString += (jsonString.EndsWith("\n") ? "" : ",") + newJsonString + "]";
                  jsonString += "," + newJsonString + "]";
 
-                File.WriteAllText(Application.dataPath + "/level_data.json", jsonString);
+                File.WriteAllText(Application.dataPath + resourcePath, jsonString);
                 
                 Debug.Log("Succesfully Added Json file");
             }
@@ -167,7 +158,6 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("Load Selected Scene"))
         {
-            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {
@@ -187,7 +177,6 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("Reset Editor Scene"))
         {
-            // Platform platform = (Platform)target;
 
             if (platform.transform.childCount > 0)
             {
@@ -207,21 +196,19 @@ public class LevelSaveEditor : Editor
         GUILayout.EndHorizontal();
 
        
-        GUILayout.BeginHorizontal(); //update the selected buradaydı
+        GUILayout.BeginHorizontal();
         if (GUILayout.Button("Update Selected Level Data in JSON", GetButtonStyle(Color.red, Color.black)))
         {
-            // Platform platform = (Platform)target;
-            
-            if (_selectedSceneIndex != null && platform.transform.childCount > 0)
+            if (_selectedSceneIndex != 0 && platform.transform.childCount > 0)
             {
-                string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+                string json = File.ReadAllText(Application.dataPath + resourcePath);
                 List<Level> levels = Level.ListFromJson(json);
 
                 Level selectedLevel = levels[_selectedSceneIndex];
 
                 selectedLevel.FirstCheckpointCount = firstCheckpointVal;
                 selectedLevel.SecondCheckpointCount = secondCheckpointVal;
-                // update the specific fields you want to change
+                
                 selectedLevel.ObjectGroups = new ObjectGroup[platform.transform.childCount];
                 for (int i = 0; i < platform.transform.childCount; i++)
                 {
@@ -233,7 +220,6 @@ public class LevelSaveEditor : Editor
                             objectGroup.gameObject.GetComponent<CollectableGroup>().GroupLayout);
                 }
 
-                // update the JSON for the specific level
                 levels[_selectedSceneIndex] = selectedLevel;
 
                 var settings = new JsonSerializerSettings
@@ -242,7 +228,7 @@ public class LevelSaveEditor : Editor
                 };
                 string updatedJson = JsonConvert.SerializeObject(levels, Formatting.Indented, settings);
 
-                File.WriteAllText(Application.dataPath + "/level_data.json", updatedJson);
+                File.WriteAllText(Application.dataPath + resourcePath, updatedJson);
                 
                 Debug.Log("Succesfully Update Json file");
             }
@@ -256,12 +242,10 @@ public class LevelSaveEditor : Editor
 
         GUILayout.Label("These buttons are for moving the last added object");
         GUILayout.BeginHorizontal();
-        GUILayout.Space(43); // add some space before the buttons to center them
+        GUILayout.Space(43); 
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("▲", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            // Platform platform = (Platform)target;
-
             if (platform.transform.childCount > 0)
             {
                 Transform lastObjectTransform = platform.transform.GetChild(platform.transform.childCount - 1);
@@ -278,8 +262,6 @@ public class LevelSaveEditor : Editor
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("◀", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            // Platform platform = (Platform)target;
-
             if (platform.transform.childCount > 0)
             {
                 Transform lastObjectTransform = platform.transform.GetChild(platform.transform.childCount - 1);
@@ -290,8 +272,7 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("▼", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            // Platform platform = (Platform)target;
-
+           
             if (platform.transform.childCount > 0)
             {
                 Transform lastObjectTransform = platform.transform.GetChild(platform.transform.childCount - 1);
@@ -302,8 +283,6 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("▶", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            // Platform platform = (Platform)target;
-
             if (platform.transform.childCount > 0)
             {
                 Transform lastObjectTransform = platform.transform.GetChild(platform.transform.childCount - 1);
@@ -324,8 +303,6 @@ public class LevelSaveEditor : Editor
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("↺", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            // Platform platform = (Platform)target;
-
             if (platform.transform.childCount > 0)
             {
                 Transform lastObjectTransform = platform.transform.GetChild(platform.transform.childCount - 1);
@@ -336,8 +313,6 @@ public class LevelSaveEditor : Editor
 
         if (GUILayout.Button("↻", GUILayout.Width(40), GUILayout.Height(40)))
         {
-            // Platform platform = (Platform)target;
-
             if (platform.transform.childCount > 0)
             {
                 Transform lastObjectTransform = platform.transform.GetChild(platform.transform.childCount - 1);
@@ -355,7 +330,7 @@ public class LevelSaveEditor : Editor
     {
         ObjectGroupBuilder objectGroupBuilder = FindObjectOfType<ObjectGroupBuilder>();
         
-        string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+        string json = File.ReadAllText(Application.dataPath + resourcePath);
         List<Level> levels = Level.ListFromJson(json);
 
         Level selectedLevel = levels[_selectedSceneIndex];
@@ -368,7 +343,6 @@ public class LevelSaveEditor : Editor
                 {
                     GameObject instance = objectGroupBuilder.BuildProductionWith(_prefabs[i].GetComponent<CollectableGroup>(), objectGroup.Position,objectGroup.Rotation).gameObject;
                     
-                    // instance.transform.parent = GameObject.FindWithTag("LevelEnvironments").transform;
                     instance.transform.parent = ((Component)target).transform;
                 }
             }
@@ -381,12 +355,12 @@ public class LevelSaveEditor : Editor
     private GUIStyle GetButtonStyle(Color backgroundColor, Color textColor)
     {
         GUIStyle style = new GUIStyle(GUI.skin.button);
-        style.normal.background = MakeTex(1, 1, backgroundColor);
+        style.normal.background = MakeText(1, 1, backgroundColor);
         style.normal.textColor = textColor;
         return style;
     }
 
-    private Texture2D MakeTex(int width, int height, Color color)
+    private Texture2D MakeText(int width, int height, Color color)
     {
         Color[] pix = new Color[width * height];
 
@@ -415,7 +389,7 @@ public class LevelSaveEditor : Editor
     
     private string[] GetLevelNumbers()
     {
-        string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+        string json = File.ReadAllText(Application.dataPath + resourcePath);
         List<Level> levels = Level.ListFromJson(json);
     
         string[] prefabNames = new string[levels.Count];
@@ -428,47 +402,5 @@ public class LevelSaveEditor : Editor
         return prefabNames;
     }
     
-    private void UpdateLevelData()
-    {
-
-       
-        if (_selectedSceneIndex !=0)
-        {
-            string json = File.ReadAllText(Application.dataPath + "/level_data.json");
-            List<Level> levels = Level.ListFromJson(json);
-
-            Level selectedLevel = levels[_selectedSceneIndex];
-
-            List<ObjectGroup> updatedObjectGroups = new List<ObjectGroup>();
-
-            // ObjectGroups güncellenir
-
-            Level updatedLevel = new Level(selectedLevel.LevelNumber, updatedObjectGroups.ToArray(), firstCheckpointVal,secondCheckpointVal);
-
-            string updatedJson = JsonConvert.SerializeObject(updatedLevel, Formatting.Indented);
-
-            File.WriteAllText(Application.dataPath + "/level_data.json", updatedJson);
-        }
-        
-        
-        
-       
-    }
-
-    private List<ObjectGroup> GetLevelData(int levelNumber)
-    {
-        string json = File.ReadAllText(Application.dataPath + "/level_data.json");
-        List<Level> levels = Level.ListFromJson(json);
-
-        foreach (Level level in levels)
-        {
-            if (level.LevelNumber == levelNumber)
-            {
-                return level.ObjectGroups.ToList();
-            }
-        }
-
-        return null;
-    }
 }
 #endif

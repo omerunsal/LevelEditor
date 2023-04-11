@@ -33,7 +33,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject loaderPanel;
 
     public int CompletedLevelSectorCount;
-
+    private string resourcePath = "/Resources/level_data.json";
     void Awake()
     {
         RandomizeLevels();
@@ -46,7 +46,7 @@ public class GameManager : Singleton<GameManager>
 
     private void LoadJsonData()
     {
-        json = File.ReadAllText(Application.dataPath + "/level_data.json");
+        json = File.ReadAllText(Application.dataPath + resourcePath);
     }
 
     void Start()
@@ -61,7 +61,7 @@ public class GameManager : Singleton<GameManager>
 
     private void RandomizeLevels()
     {
-        // Decide total level count
+        
         if (singleSceneForAllLevels)
         {
             totalLevelCount = levels.Length;
@@ -71,14 +71,12 @@ public class GameManager : Singleton<GameManager>
             totalLevelCount = SceneManager.sceneCountInBuildSettings;
         }
 
-        // Limit starting level count for the loop after main levels
         if (totalLevelCount <= startLevelCountForLoop)
         {
             startLevelCountForLoop = Mathf.Clamp(totalLevelCount - 1, 1, 100);
-            // Debug.LogError("Start level of the loop can't be the last level");
+           
         }
 
-        // Define necessary lists for randomization
         levelNumbers = new List<int>();
 
         if (singleSceneForAllLevels)
@@ -100,21 +98,21 @@ public class GameManager : Singleton<GameManager>
             randomLevels = new int[totalLevelCount - startLevelCountForLoop + 1];
         }
 
-        // Store current state of the RNG
+      
         Random.State originalRandomState = Random.state;
 
         if (singleSceneForAllLevels)
         {
-            // Use a specific seed to get the same outcome every time
+           
             Random.InitState(levels.Length);
         }
         else
         {
-            // Use a specific seed to get the same outcome every time
+           
             Random.InitState(totalLevelCount);
         }
 
-        // Randomize level list for after manin levels
+        
         for (int i = 0; i < randomLevels.Length; i++)
         {
             int randomIndex = Random.Range(0, levelNumbers.Count);
@@ -132,13 +130,13 @@ public class GameManager : Singleton<GameManager>
             levelNumbers.RemoveAt(randomIndex);
         }
 
-        // Return the RNG to how it was before
+        
         Random.state = originalRandomState;
     }
 
     private void AssignSaveLoadParameters()
     {
-        // Set current level and gem count numbers by loading saved data
+        
         if (!PlayerPrefs.HasKey(level))
         {
             PlayerPrefs.SetInt(level, 1);
@@ -149,7 +147,7 @@ public class GameManager : Singleton<GameManager>
 
     private void SelectLoadType()
     {
-        // Decide load method based on level management system
+        
         if (isThisLoaderScene)
         {
             loaderPanel.SetActive(true);
@@ -163,10 +161,9 @@ public class GameManager : Singleton<GameManager>
 
     private void LevelLoad()
     {
-        string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+        string json = File.ReadAllText(Application.dataPath + resourcePath);
         List<Level> levelList = Level.ListFromJson(json);
 
-        // Decide which scene to load
         if (currentLevel > levelList.Count)
         {
             currentLevel = randomLevels[(currentLevel - (startLevelCountForLoop - 1) - 1) % randomLevels.Length];
@@ -180,7 +177,7 @@ public class GameManager : Singleton<GameManager>
 
     private void SelectLevel()
     {
-        // Decide which level to load on the same scene
+        
         if (currentLevel > totalLevelCount)
         {
             currentLevel = randomLevels[(currentLevel - (startLevelCountForLoop - 1) - 1) % randomLevels.Length];
@@ -262,6 +259,5 @@ public class GameManager : Singleton<GameManager>
     public void NextLevel()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        // LevelLoad();
     }
 }

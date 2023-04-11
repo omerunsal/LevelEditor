@@ -16,16 +16,11 @@ public class UIManager : MonoBehaviour
     public Color mainColor;
 
 
-    public GameObject[] levelCounts;
-
-    public GameObject gameNameParentGameObject;
     public GameObject tutorialHand;
     public GameObject tutorialText;
     public GameObject[] panels;
     public GameObject restartButton;
-    public GameObject successText;
-    public GameObject failText;
-    public GameObject nextButtonText;
+   
 
     public GameObject firstSectorProgress;
     public GameObject secondSectorProgress;
@@ -99,32 +94,6 @@ public class UIManager : MonoBehaviour
 
     private void PrepareUI()
     {
-        for (int i = 0; i < levelCounts.Length; i++)
-        {
-            levelCounts[i].GetComponent<TextMeshProUGUI>().font = font;
-            levelCounts[i].GetComponent<TextMeshProUGUI>().color = mainColor;
-            levelCounts[i].GetComponent<TextMeshProUGUI>().text =
-                "LEVEL " + GameManager.Instance.currentLevel.ToString();
-        }
-
-        for (int i = 0; i < gameNameParentGameObject.transform.childCount; i++)
-        {
-            gameNameParentGameObject.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = gameName;
-            gameNameParentGameObject.transform.GetChild(i).GetComponent<TextMeshProUGUI>().font = font;
-        }
-
-        gameNameParentGameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = mainColor;
-
-        tutorialText.GetComponent<TextMeshProUGUI>().color = mainColor;
-        tutorialText.GetComponent<TextMeshProUGUI>().font = font;
-
-        successText.GetComponent<TextMeshProUGUI>().font = font;
-        failText.GetComponent<TextMeshProUGUI>().font = font;
-        nextButtonText.GetComponent<TextMeshProUGUI>().font = font;
-
-        restartButton.GetComponent<Image>().color = mainColor;
-
-
         Color transparentMainColor = mainColor;
         transparentMainColor.a = 0f;
 
@@ -143,7 +112,6 @@ public class UIManager : MonoBehaviour
                     return;
                 }
 
-                gameNameParentGameObject.SetActive(false);
                 tutorialHand.SetActive(false);
                 tutorialText.SetActive(false);
 

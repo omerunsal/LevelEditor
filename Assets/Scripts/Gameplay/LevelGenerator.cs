@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-// [DefaultExecutionOrder(-100)]
+ [DefaultExecutionOrder(-100)]
 public class LevelGenerator : Singleton<LevelGenerator>
 {
     public GameObject[] _prefabs;
@@ -11,14 +11,12 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
     private void Awake()
     {
-        // _currentLevel = PlayerPrefs.GetInt(LEVEL_KEY, 1);
-
         GenerateLevel(GameManager.Instance.currentLevel);
     }
 
     private void GenerateLevel(int levelNumber)
     {
-        string json = File.ReadAllText(Application.dataPath + "/level_data.json");
+        string json = File.ReadAllText(Application.dataPath + "/Resources/level_data.json");
         List<Level> levelList = Level.ListFromJson(json);
         
         if (levelList.Count <= GameManager.Instance.currentLevel)
@@ -41,7 +39,6 @@ public class LevelGenerator : Singleton<LevelGenerator>
                     GameObject instance = objectGroupBuilder
                         .BuildProductionWith(_prefabs[i].GetComponent<CollectableGroup>(), objectGroup.Position,
                             objectGroup.Rotation).gameObject;
-                    // GameObject instance = Instantiate(_prefabs[i], objectGroup.Position, Quaternion.Euler(objectGroup.Rotation)).gameObject;
 
                     instance.transform.parent = GameObject.FindWithTag("LevelEnvironments").transform;
                 }

@@ -14,12 +14,11 @@ public class FinishController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             GameManager.Instance.CompletedLevelSectorCount++;
             collider.enabled = false;
             GameManager.Instance.isLevelStarted = false;
-            // other.transform.parent.GetComponent<PlayerController>().playerSettings.moveSpeed = 0f;
             GameManager.Instance.LevelComplete();
         }
     }

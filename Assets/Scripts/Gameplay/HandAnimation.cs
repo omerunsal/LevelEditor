@@ -9,10 +9,7 @@ public class HandAnimation : MonoBehaviour
     [SerializeField] float moveSpeed = 250f;
     [SerializeField] bool isInfinite = true;
     [SerializeField] int repeateCount = 3;
-    [Range(0.01f, 0.2f)]
-    [SerializeField] float dissolveSpeed = 0.04f;
-    [Range(0.01f, 0.2f)]
-    [SerializeField] float appearSpeed = 0.04f;
+    
     public RectTransform point1;
     public RectTransform point2;
 

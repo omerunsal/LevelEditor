@@ -8,5 +8,4 @@ public class Player : ScriptableObject
 {
     public float moveSpeed;
     public float rotateSpeed;
-    public Color collectorColor; 
 }

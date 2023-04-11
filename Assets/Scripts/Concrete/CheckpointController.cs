@@ -50,10 +50,7 @@ public class CheckpointController : MonoBehaviour
                 checkpointGround.transform.localPosition.z);
             yield return checkpointGround.transform.DOLocalMove(targetPos, duration).WaitForCompletion();
 
-            
             GameManager.Instance.isLevelStarted = true;
-            // GameObject.FindGameObjectWithTag("Player").transform.parent.GetComponent<PlayerController>().playerSettings
-            //     .moveSpeed = 15f;
             yield return null;
 
         }
