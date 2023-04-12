@@ -6,7 +6,7 @@ The 'Platform' game object on EditorScene is a Level Editor tool that runs in Ed
 - You can add the selected object to the scene with the green Add button. Red delete button will destroy the last object added from the scene.
 - The 1st and 2nd Checkpoint count textbox lists the checkpoint numbers of the selected and loaded scene and serves as an input to update it.
 
-The template scene is the only scene in the build and the prepared levels are played through this scene.
+Also JSON file can be found under the Assets / StreamingAssets folder. The template scene is the only scene in the build and the prepared levels are played through this scene.
 
 
 
