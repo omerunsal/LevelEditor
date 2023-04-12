@@ -24,7 +24,6 @@ public class CharacterController : MonoBehaviour
     {
         if (GameManager.Instance.isLevelStarted)
         {
-            // transform.position = LimitPosition(transform.position);
             rigidbody.velocity = new Vector3(direction.x,direction.y,1f) * playerSettings.moveSpeed;
             
         }

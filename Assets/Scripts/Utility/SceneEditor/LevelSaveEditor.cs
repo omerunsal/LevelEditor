@@ -1,13 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR    
 [CustomEditor(typeof(Platform))]
@@ -22,7 +17,7 @@ public class LevelSaveEditor : Editor
     private int secondCheckpointVal = 0;
 
     string jsonString = "";
-    private string resourcePath = "/Resources/level_data.json";
+    private string resourcePath = "/StreamingAssets/level_data.json";
 
     private void OnEnable()
     {

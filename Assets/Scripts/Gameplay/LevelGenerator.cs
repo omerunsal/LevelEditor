@@ -16,8 +16,25 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
     private void GenerateLevel(int levelNumber)
     {
-        string json = File.ReadAllText(Application.dataPath + "/Resources/level_data.json");
-        List<Level> levelList = Level.ListFromJson(json);
+        string filePath = Path.Combine(Application.streamingAssetsPath, "level_data.json");
+        string jsonString;
+
+        
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            WWW reader = new WWW(filePath);
+           
+
+            jsonString = reader.text;
+        }
+        else
+        {
+            jsonString = File.ReadAllText(filePath);
+        }
+
+       
+        List<Level> levelList = Level.ListFromJson(jsonString);
+       
         
         if (levelList.Count <= GameManager.Instance.currentLevel)
         {

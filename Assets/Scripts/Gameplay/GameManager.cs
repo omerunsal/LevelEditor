@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
     public int CompletedLevelSectorCount;
     private List<int> levelNumbers;
     
-    private string resourcePath = "/Resources/level_data.json";
+    private string resourcePath = "/StreamingAssets/level_data.json";
     private string json;
     private const string level = "level";
     

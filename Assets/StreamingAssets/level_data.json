@@ -668,48 +668,6 @@
         "GroupLayout": 0
       },
       {
-        "ObjectShape": 1,
-        "Position": {
-          "x": -3.0,
-          "y": 0.0,
-          "z": 55.0
-        },
-        "Rotation": {
-          "x": 0.0,
-          "y": 270.0,
-          "z": 0.0
-        },
-        "GroupLayout": 1
-      },
-      {
-        "ObjectShape": 0,
-        "Position": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 9.0
-        },
-        "Rotation": {
-          "x": 0.0,
-          "y": 330.0,
-          "z": 0.0
-        },
-        "GroupLayout": 1
-      },
-      {
-        "ObjectShape": 1,
-        "Position": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 19.65
-        },
-        "Rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
-        },
-        "GroupLayout": 2
-      },
-      {
         "ObjectShape": 0,
         "Position": {
           "x": -3.55999947,
@@ -738,6 +696,34 @@
         "GroupLayout": 0
       },
       {
+        "ObjectShape": 1,
+        "Position": {
+          "x": -3.0,
+          "y": 0.0,
+          "z": 55.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 270.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
+        "ObjectShape": 0,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 9.0
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 330.0,
+          "z": 0.0
+        },
+        "GroupLayout": 1
+      },
+      {
         "ObjectShape": 0,
         "Position": {
           "x": 2.29999924,
@@ -757,6 +743,20 @@
           "x": -2.0,
           "y": 0.0,
           "z": 39.36
+        },
+        "Rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "GroupLayout": 2
+      },
+      {
+        "ObjectShape": 1,
+        "Position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 19.65
         },
         "Rotation": {
           "x": 0.0,
@@ -857,7 +857,7 @@
         "GroupLayout": 2
       }
     ],
-    "FirstCheckpointCount": 20,
+    "FirstCheckpointCount": 15,
     "SecondCheckpointCount": 20
   }
 ]
