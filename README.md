@@ -1,4 +1,4 @@
-# CaseRL
+# Guide
 
 The 'Platform' game object on EditorScene is a Level Editor tool that runs in Editor Mode. I will try to write a short guide.
 - First you need to load one of the current levels from the 'Scenes' selectbox.
